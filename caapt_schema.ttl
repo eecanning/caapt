@@ -3,6 +3,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcam: <http://purl.org/dc/dcam/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
@@ -19,7 +20,19 @@
 #################################################################
 
 <https://example.org/caapt/scheme/> a owl:Ontology ;
-	rdfs:label "Concept scheme for the Computational Approaches for Addressing Problematic Terminology project"@en .
+	rdfs:label "CAAPT scheme"@en ;
+	vann:preferredNamespacePrefix "caapt" ;
+	owl:versionInfo "1.0" ;
+	dcterms:created "2023-09-01"^^xsd:date ;
+	dcterms:modified "2024-01-12"^^xsd:date ;
+	dcterms:creator <https://orcid.org/0000-0003-3383-272X> ;
+	dcterms:description "An OWL ontology for the Computational Approaches for Addressing Problematic Terminology project that incorporates elements of CIDOC CRM, OntoLex, SKOS, and CULCO ontologies." ;
+	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> .
+# 	owl:versionIRI
+#	dcterms:issued
+#	vann:preferredNamespaceUri
+
+<https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
 
 
 #################################################################
