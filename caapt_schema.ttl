@@ -49,11 +49,11 @@ caapt:TermRoot a owl:Class ;
 
 caapt:Guide a owl:Class ; 
 	rdfs:label "Written guidance on language use"@en ;
-	rdfs:subClassOf skos:ConceptScheme, crm:E32_Authority_Document, ontolex:ConceptSet, culco:ContentiousIssueScheme .
+	rdfs:subClassOf skos:ConceptScheme, crm:E32_Authority_Document, ontolex:ConceptSet .
 
 caapt:TerminologyGuide a owl:Class ;
 	rdfs:label "Written guidance for addressing problematic terminology created with the intention of assisting in reparative description work or education around reparative description work"@en ;
-	rdfs:subClassOf caapt:Guide . 
+	rdfs:subClassOf caapt:Guide, culco:ContentiousIssueScheme . 
 
 caapt:StyleGuide a owl:Class ; 
 	rdfs:label "Written guidance for language style and use"@en ;
@@ -105,6 +105,20 @@ caapt:about_who a owl:ObjectProperty ;
 	rdfs:domain caapt:UseContext ; 
 	rdfs:range crm:E74_Group ;
 	rdfs:subPropertyOf ontolex:usage .
+
+# temporal modelling element, likely to change
+caapt:replacing a owl:ObjectProperty ;
+	rdfs:label "term that this sense describes the replacement of";
+	rdfs:domain caapt:UseContext ;
+	rdfs:range caapt:TermRoot ;
+	rdfs:subPropertyOf ontolex:reference .
+
+# temporal modelling element, likely to change
+caapt:replaced_by a owl:ObjectProperty ;
+	rdfs:label "term that this sense describes being replaced by";
+	rdfs:domain caapt:UseContext ;
+	rdfs:range caapt:TermRoot ;
+	rdfs:subPropertyOf ontolex:reference .
 
 caapt:used_when a owl:DatatypeProperty ;
 	rdfs:label "time period in which the use context existed or was/is relevant"@en ;
