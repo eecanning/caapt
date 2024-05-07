@@ -107,6 +107,8 @@ caapt:about_who a owl:ObjectProperty ;
 	rdfs:subPropertyOf ontolex:usage .
 
 # temporal modelling element, likely to change
+# will probably update to UseContext > UseContext relationship as opposed to pointing to a term
+# "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities" 
 caapt:replacing a owl:ObjectProperty ;
 	rdfs:label "term that this sense describes the replacement of";
 	rdfs:domain caapt:UseContext ;
@@ -114,6 +116,8 @@ caapt:replacing a owl:ObjectProperty ;
 	rdfs:subPropertyOf ontolex:reference .
 
 # temporal modelling element, likely to change
+# will probably update to UseContext > UseContext relationship as opposed to pointing to a term
+# "the use of the term 'handicapped' was replaced by the use of the term 'disabled' to refer to people living with diasbilities" 
 caapt:replaced_by a owl:ObjectProperty ;
 	rdfs:label "term that this sense describes being replaced by";
 	rdfs:domain caapt:UseContext ;
