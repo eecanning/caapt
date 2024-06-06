@@ -522,6 +522,16 @@ crm:P134i_was_continued_by a owl:ObjectProperty ;
 	rdfs:domain crm:E7_Activity .
 	rdfs:range crm:E7_Activity .
 
+crm:P140_assigned_attribute_to a owl:ObjectProperty ; 
+	rdfs:domain crm:E13_Attribute_Assignment ; 
+	rdfs:range crm:E1_CRM_Entity ;
+	dcam:rangeIncludes caapt:EncounterInstance .
+
+crm:P141_assigned a owl:ObjectProperty ; 
+	rdfs:domain crm:E13_Attribute_Assignment ; 
+	rdfs:range crm:E1_CRM_Entity ;
+	dcam:rangeIncldues caapt:UseContext, crm:E55_Type .
+
 crm:P148_has_component a owl:ObjectProperty ; 
 	rdfs:domain crm:E89_Propositional_Object ;
 	rdfs:range crm:E89_Propositional_Object ;
