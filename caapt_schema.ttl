@@ -23,7 +23,7 @@
 	vann:preferredNamespacePrefix "caapt" ;
 	owl:versionInfo "1.0" ;
 	dcterms:created "2023-09-01"^^xsd:date ;
-	dcterms:modified "2024-06-03"^^xsd:date ;
+	dcterms:modified "2024-06-06"^^xsd:date ;
 	dcterms:creator <https://orcid.org/0000-0003-3383-272X> ;
 	dcterms:description "An OWL ontology for the Computational Approaches for Addressing Problematic Terminology project that incorporates elements of CIDOC CRM, OntoLex, SKOS, and CULCO ontologies." ;
 	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> .
@@ -216,8 +216,11 @@ frac:Attestation a owl:Class .
 
 crm:E7_Activity a owl:Class .
 
-crm:E17_Type_Assignment a owl:Class ;
+crm:E13_Attribute_Assignment a owl:Class ; 
 	rdfs:subClassOf crm:E7_Activity .
+
+crm:E17_Type_Assignment a owl:Class ;
+	rdfs:subClassOf crm:E13_Attribute_Assignment .
 
 crm:E21_Person a owl:Class ;
 	rdfs:subClassOf crm:E39_Actor .
@@ -233,11 +236,15 @@ crm:E33_Linguistic_Object a owl:Class .
 
 crm:E39_Actor a owl:Class .
 
+crm:E42_Identifier a owl:Class .
+
 crm:E52_Time-Span a owl:Class .
 
 crm:E53_Place a owl:Class .
 
 crm:E55_Type a owl:Class .
+
+crm:E70_Thing a owl:Class .
 
 crm:E74_Group a owl:Class ;
 	rdfs:subClassOf crm:E39_Actor .
@@ -252,6 +259,8 @@ crm:E2_Temporal_Entity a owl:Class .
 crm:E89_Propositional_Object a owl:Class .
 
 crm:E90_Symbolic_Object a owl:Class .
+
+crm:E92_Spacetime_Volume a owl:Class .
 
 
 #################################################################
@@ -368,6 +377,12 @@ frac:attestation a owl:ObjectProperty ;
 #    CIDOC CRM Properties
 #################################
 
+crm:P1_is_identified_by a owl:ObjectProperty ; 
+	rdfs:domain crm:E1_CRM_Entity ; 
+	rdfs:range crm:E41_Appellation ; 
+	dcam:rangeIncludes crm:E70_Thing ;
+	dcam:domainIncludes crm:E42_Identifier . 
+
 crm:P2_has_type a owl:ObjectProperty ; 
 	rdfs:domain crm:E1_CRM_Entity ; 
 	rdfs:range crm:E55_Type ; 
@@ -378,21 +393,45 @@ crm:P4_has_time-span a owl:ObjectProperty ;
 	rdfs:range crm:E52_Time-Span ;
 	dcam:domainIncludes crm:E7_Activity . 
 
+crm:P10_falls_within a owl:ObjectProperty ; 
+	rdfs:domain crm:E92_Spacetime_Volume ; 
+	rdfs:range crm:E92_Spacetime_Volume ; 
+	dcam:domainIncludes crm:E7_Activity ; 
+	dcam:rangeIncludes crm:E7_Activity . 
+
+crm:P11_had_participant a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E39_Actor ; 
+	dcam:domainIncludes crm:E7_Activity ;
+	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
+
 crm:P14_carried_out_by a owl:ObjectProperty ; 
 	rdfs:domain crm:E7_Activity ; 
 	rdfs:range crm:E39_Actor ; 
 	dcam:domainIncludes crm:E7_Activity, crm:E17_Type_Assignment ;
 	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
 
-crm:P17i_motivated a owl:ObjectProperty ; 
-	rdfs:domain crm:E1_CRM_Entity ; 
+crm:P17_was_motivated_by a owl:ObjectPRoperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E1_CRM_Entity ; 
+	dcam:rangeIncldues caapt:EncounterInstance ;
+	owl:inverseOf crm:P17i_motivated .
+
+crm:P20i_was_purpose_of a owl:ObjectProperty ; 
+	rdfs:domain crm:E5_Event ; 
 	rdfs:range crm:E7_Activity ; 
-	dcam:domainIncludes caapt:EncounterInstance ;
-	owl:inverseOf crm:P17_motivated .
+	dcam:domainIncludes crm:E7_Activity ;
+	dcam:rangeIncludes crm:E13_Attribute_Assignment .
+
+crm:P21_had_general_purpose a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E55_Type ;
+	dcam:domainIncludes crm:E13_Attribute_Assignment .
 
 crm:P33_used_specific_technique a owl:ObjectProperty ; 
 	rdfs:domain crm:E7_Activity ; 
-	rdfs:range crm:E29_Design_or_Procedure .
+	rdfs:range crm:E29_Design_or_Procedure ;
+	dcma:domainIncludes crm:E29_Design_or_Procedure, caapt:Suggestion .
 
 crm:P41i_was_classified_by a owl:ObjectProperty ; 
 	rdfs:domain crm:E1_CRM_Entity ; 
@@ -479,6 +518,10 @@ crm:P129i_is_subject_of a owl:ObjectProperty ;
 	dcam:rangeIncludes crm:E33_Linguistic_Object ; 
 	owl:inverseOf crm:P129_is_about .
 
+crm:P134i_was_continued_by a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity .
+	rdfs:range crm:E7_Activity .
+
 crm:P148_has_component a owl:ObjectProperty ; 
 	rdfs:domain crm:E89_Propositional_Object ;
 	rdfs:range crm:E89_Propositional_Object ;
@@ -492,6 +535,10 @@ crm:P148i_is_component_of a owl:ObjectProperty ;
 	dcam:domainIncludes crm:E33_Linguistic_Object ;
 	dcam:rangeIncludes caapt:Guide ;
 	owl:inverseOf crm:P148_has_component . 
+
+crm:P3_has_note a owl:DatatypeProperty ;
+	rdfs:domain crm:E1_CRM_Entity ; 
+	rdfs:range rdfs:Literal . 
 
 crm:P82_at_some_time_within a owl:DatatypeProperty ;
 	rdfs:domain crm:E52_Time-Span ; 
