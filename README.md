@@ -1,2 +1,10 @@
 # caapt
-Computational approaches to addressing problematic terminology
+# CAAPT-O: CAAPT-O: Computational Approaches for Addressing Problematic Terminology - Ontology
+
+The CAAPT Ontology represents the structure and intellectual contents of terminology guideline documents along with the related work practices of reviewing and potentially editing records as a result of the identification of "problematic terminology" in cultural heritage institutions, with a particular focus on the museum context. It is named for the research project in which it was developed: the AHRC-funded studentship Computational Approaches for Addressing Problematic Terminology in V&A Museum catalogues. CAAPT-O models terms, definitions, suggestions, and actions, drawing on existing ontologies such as CIDOC CRM, OntoLex, and CULCO to represent the key concepts involved in critical cataloguing as defined by domain experts.
+
+The CAAPT Ontology was developed primarily to represent the structure and contents of the V&A Museum Terminology Guidelines document, and the reparative cataloguing work actions taking place within that institution. The ontology has been validated through the analysis and incorporation of two other source documents: the glossary section of the publication ["Words Matter"](https://www.tropenmuseum.nl/en/about-tropenmuseum/words-matter-publication)--which also served as the source document for the CULCO ontology--and the Cultural Heritage Terminology Networks's ["Inclusive Terminology Glossary"](https://culturalheritageterminology.co.uk/glossary-2/). Forty-five competency questions, and twelve additional sub-questions, were also developed in collaboration with V&A Museum staff, and were also used to evaluate the ontology and the knowledge graph that has been produced for the CAAPT project using the ontology structure defined here.
+
+Background information and early work on this project can be found in [Canning (2024). Defining an Ontology for Museum Critical Cataloguing Terminology Guidelines, Proceedings of the 9th Workshop on Linked Data in Linguistics @ LREC-COLING 2024](https://aclanthology.org/2024.ldl-1.4/).
+
+This research is taking place as part of the AHRC-funded Collaborative Doctoral Partnership scheme grant AH/X004775/1.

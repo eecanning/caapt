@@ -10,26 +10,26 @@
 @prefix frac: <http://www.w3.org/ns/lemon/frac#> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix culco: <https://w3id.org/culco#> .
-@prefix caapt: <https://example.org/caapt/scheme#> .
-# base: <https://example.org/caapt/scheme#> .
+@prefix caapt: <https://w3id.org/caapt/ontology#> .
+# base: <https://w3id.org/caapt/ontology#> .
 
 
 #################################################################
 #    CAAPT Ontology
 #################################################################
 
-<https://example.org/caapt/scheme/> a owl:Ontology ;
-	rdfs:label "CAAPT scheme"@en ;
+<https://w3id.org/caapt/ontology> a owl:Ontology ;
+	rdfs:label "CAAPT Ontology"@en ;
 	vann:preferredNamespacePrefix "caapt" ;
-	owl:versionInfo "1.0" ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt#> ;
 	dcterms:created "2023-09-01"^^xsd:date ;
-	dcterms:modified "2024-06-06"^^xsd:date ;
+	dcterms:modified "2024-10-22"^^xsd:date ;
+	dcterms:issued "2024-10-22"^^xsd:date ;
 	dcterms:creator <https://orcid.org/0000-0003-3383-272X> ;
 	dcterms:description "An OWL ontology for the Computational Approaches for Addressing Problematic Terminology project that incorporates elements of CIDOC CRM, OntoLex, SKOS, and CULCO ontologies." ;
-	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> .
-# 	owl:versionIRI
-#	dcterms:issued
-#	vann:preferredNamespaceUri
+	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> ;
+	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/v.1.0.0/ontology.ttl> ;
+	owl:versionInfo "1.0.0" .
 
 <https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
 
@@ -137,7 +137,7 @@ caapt:suggests_replacement_term a owl:ObjectProperty ;
 	rdfs:range ontolex:LexicalEntry .
 
 caapt:suggests_amending_term a owl:ObjectProperty ;
-	rdfs:label "Is suggested amending term used in in the suggestion"@en ;
+	rdfs:label "Is suggested amending term used in the suggestion"@en ;
 	rdfs:domain caapt:Suggestion ; 
 	rdfs:range ontolex:LexicalEntry .
 
@@ -153,7 +153,7 @@ caapt:if_not_possible_use a owl:ObjectProperty ;
 	rdfs:domain caapt:Suggestion ; 
 	rdfs:range caapt:sSggestion ;
 	owl:inverseOf caapt:preferred ;
-	rdfs:subPropertyOf crm:P69i_is_association_with .
+	rdfs:subPropertyOf crm:P69i_is_associated_with .
 
 caapt:use_along_with a owl:ObjectProperty ;
 	rdfs:label "Suggestion to be used concurrently"@en ;
@@ -414,7 +414,7 @@ crm:P14_carried_out_by a owl:ObjectProperty ;
 crm:P17_was_motivated_by a owl:ObjectPRoperty ; 
 	rdfs:domain crm:E7_Activity ; 
 	rdfs:range crm:E1_CRM_Entity ; 
-	dcam:rangeIncldues caapt:EncounterInstance ;
+	dcam:rangeIncludes caapt:EncounterInstance ;
 	owl:inverseOf crm:P17i_motivated .
 
 crm:P20i_was_purpose_of a owl:ObjectProperty ; 
@@ -530,7 +530,7 @@ crm:P140_assigned_attribute_to a owl:ObjectProperty ;
 crm:P141_assigned a owl:ObjectProperty ; 
 	rdfs:domain crm:E13_Attribute_Assignment ; 
 	rdfs:range crm:E1_CRM_Entity ;
-	dcam:rangeIncldues caapt:UseContext, crm:E55_Type .
+	dcam:rangeIncludes caapt:UseContext, crm:E55_Type .
 
 crm:P148_has_component a owl:ObjectProperty ; 
 	rdfs:domain crm:E89_Propositional_Object ;
