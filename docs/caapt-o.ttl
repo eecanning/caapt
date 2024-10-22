@@ -21,14 +21,14 @@
 <https://w3id.org/caapt/ontology> a owl:Ontology ;
 	rdfs:label "CAAPT Ontology"@en ;
 	vann:preferredNamespacePrefix "caapt" ;
-	vann:preferredNamespaceUri <https://w3id.org/caapt#> ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt/ontology#> ;
 	dcterms:created "2023-09-01"^^xsd:date ;
 	dcterms:modified "2024-10-22"^^xsd:date ;
 	dcterms:issued "2024-10-22"^^xsd:date ;
 	dcterms:creator <https://orcid.org/0000-0003-3383-272X> ;
 	dcterms:description "An OWL ontology for the Computational Approaches for Addressing Problematic Terminology project that incorporates elements of CIDOC CRM, OntoLex, SKOS, and CULCO ontologies." ;
 	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> ;
-	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/v.1.0.0/ontology.ttl> ;
+	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-o.ttl> ;
 	owl:versionInfo "1.0.0" .
 
 <https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
