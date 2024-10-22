@@ -1,4 +1,3 @@
-# caapt
 # CAAPT-O: CAAPT-O: Computational Approaches for Addressing Problematic Terminology - Ontology
 
 The CAAPT Ontology represents the structure and intellectual contents of terminology guideline documents along with the related work practices of reviewing and potentially editing records as a result of the identification of "problematic terminology" in cultural heritage institutions, with a particular focus on the museum context. It is named for the research project in which it was developed: the AHRC-funded studentship Computational Approaches for Addressing Problematic Terminology in V&A Museum catalogues. CAAPT-O models terms, definitions, suggestions, and actions, drawing on existing ontologies such as CIDOC CRM, OntoLex, and CULCO to represent the key concepts involved in critical cataloguing as defined by domain experts.
