@@ -6,15 +6,15 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix caapt-v: <https://w3id.org/caapt/vocab#> .
-# base: <https://w3id.org/caapt/vocab#> .
+@prefix caapt-v: <https://w3id.org/caapt/vocabulary#> .
+# base: <https://w3id.org/caapt/vocabulary#> .
 
 
 #################################################################
 #    CAAPT Vocabularies
 #################################################################
 
-<https://w3id.org/caapt/vocab> a void:Dataset ;
+<https://w3id.org/caapt/vocabulary> a void:Dataset ;
 	rdfs:label "CAAPT Vocabularies"@en ;
 	vann:preferredNamespacePrefix "caapt-v" ;
 	vann:preferredNamespaceUri <https://w3id.org/caapt/vocab#> ;
@@ -80,77 +80,77 @@ caapt-v:intentions a skos:ConceptScheme ;
 
 caapt-v:ableism a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonstrate or further ableist beliefs or aims"@en ;
+    rdfs:label "used to demonstrate or further ableist beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:antisemitism a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonstrate or further anti-Jewish attitudes"@en ;
+    rdfs:label "used to demonstrate or further antisemitic attitudes"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:classism a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonstrate or further classist beliefs or aims"@en ;
+    rdfs:label "used to demonstrate or further classist beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:colonialism a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonstrate or further colonial beliefs or aims"@en ;
+    rdfs:label "used to demonstrate or further colonialist beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:derogatory a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used in a derogatory manner or with derogatory intent"@en ;
+    rdfs:label "used in a derogatory manner or with derogatory intent"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:empowerment a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used as a term of empowerment"@en ;
+    rdfs:label "used as a term of empowerment"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:homophobia a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonsrate or further dislike of or prejudice against people with non-heterosexual sexualities"@en ;
+    rdfs:label "used to demonsrate or further homophobic beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:legal a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used for legal definition"@en ;
+    rdfs:label "used for legal definition"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:medical a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used for medical definition"@en ;
+    rdfs:label "used for medical definition"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:misogyny a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonstrate or further dislike of or prejudice against women"@en ;
+    rdfs:label "used to demonstrate or further misogynistic beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:political a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used for political action"@en ;
+    rdfs:label "used for political action"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:racism a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonstrate or further racist beliefs or aims"@en ;
+    rdfs:label "used to demonstrate or further racist beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:reclaim a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Harmful term reclaimed by community"@en ;
+    rdfs:label "harmful term reclaimed by community"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:respectful a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used in a respectful manner or with respectful intent"@en ;
+    rdfs:label "used in a respectful manner or with respectful intent"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:xenophobia a crm:E55_Type,
         skos:Concept ;
-    rdfs:label "Used to demonsrate or further dislike of or prejudice against people from other countries"@en ;
+    rdfs:label "used to demonsrate or further xenophobic beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 
