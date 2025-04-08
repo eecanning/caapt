@@ -7,7 +7,6 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
-@prefix frac: <http://www.w3.org/ns/lemon/frac#> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix culco: <https://w3id.org/culco#> .
 @prefix caapt: <https://w3id.org/caapt/ontology#> .
@@ -24,12 +23,13 @@
 	vann:preferredNamespaceUri <https://w3id.org/caapt/ontology#> ;
 	dcterms:created "2023-09-01"^^xsd:date ;
 	dcterms:modified "2024-10-22"^^xsd:date ;
-	dcterms:issued "2024-10-22"^^xsd:date ;
+	dcterms:modified "2025-04-08"^^xsd:date ;
+	dcterms:issued "2025-04-08"^^xsd:date ;
 	dcterms:creator <https://orcid.org/0000-0003-3383-272X> ;
-	dcterms:description "An OWL ontology for the Computational Approaches for Addressing Problematic Terminology project that incorporates elements of CIDOC CRM, OntoLex, SKOS, and CULCO ontologies." ;
+	dcterms:description "An OWL ontology for the representation of museum terminology guidance documents." ;
 	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> ;
 	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-o.ttl> ;
-	owl:versionInfo "1.0.0" .
+	owl:versionInfo "2.0.0" .
 
 <https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
 
@@ -37,10 +37,6 @@
 #################################################################
 #    CAAPT Classes
 #################################################################
-
-#################################
-#    Terminology Elements
-#################################
 
 caapt:TermEntry a owl:Class ;
 	rdfs:label "Entry of a term in a language guidance document"@en ;
@@ -62,74 +58,14 @@ caapt:StyleGuide a owl:Class ;
 	rdfs:label "Written guidance for language style and use"@en ;
 	rdfs:subClassOf caapt:Guide . 
 
-caapt:UseContext a owl:Class ;
-	rdfs:label "Context in which a term was used, often but not necessarily a historical context"@en ;
-	rdfs:subClassOf ontolex:LexicalSense .
-
-#################################
-#    Guideline Elements
-#################################
-
 caapt:Suggestion a owl:Class ;
 	rdfs:label "Suggested action to be taken when a term is encountered"@en ;
 	rdfs:subClassOf culco:Suggestion, crm:E29_Design_or_Procedure .
-
-#################################
-#    Workflow Elements
-#################################
-
-caapt:EncounterInstance a owl:Class ;
-	rdfs:label "Term encountered in an object record, connected to the context of its location"@en ;
-	rdfs:subClassOf crm:E33_LinguisticObject, frac:Attestation .  
 
 
 #################################################################
 #    CAAPT Properties
 #################################################################
-
-#################################
-#    Terminology Elements
-#################################
-
-caapt:diatopic_mark a owl:ObjectProperty ;
-	rdfs:label "Geographic location in which the use context existed or was/is relevant"@en ;
-	rdfs:domain caapt:UseContext ; 
-	rdfs:range crm:E53_Place ;
-	rdfs:subPropertyOf ontolex:usage .
-
-caapt:diaevaluative_mark a owl:ObjectProperty ;
-	rdfs:label "Intended purpose of use of the term in a use context"@en ;
-	rdfs:domain caapt:UseContext ; 
-	rdfs:range crm:E55_Type ;
-	rdfs:subPropertyOf ontolex:usage .
-
-caapt:intended_target_mark a owl:ObjectProperty ;
-	rdfs:label "Group of persons intended to be described by a term in a use context"@en ;
-	rdfs:domain caapt:UseContext ; 
-	rdfs:range crm:E74_Group ;
-	rdfs:subPropertyOf ontolex:usage .
-
-caapt:describes_replacing a owl:ObjectProperty ;
-	rdfs:label "Term that this sense describes the replacement of; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
-	rdfs:domain caapt:UseContext ;
-	rdfs:range caapt:TermRoot ;
-	rdfs:subPropertyOf ontolex:isSenseOf .
-
-caapt:describes_replaced_by a owl:ObjectProperty ;
-	rdfs:label "Term that this sense describes being replaced by; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
-	rdfs:domain caapt:UseContext ;
-	rdfs:range caapt:TermRoot ;
-	rdfs:subPropertyOf ontolex:isSenseOf .
-
-caapt:diachronic_mark a owl:DatatypeProperty ;
-	rdfs:label "Time period in which the use context existed or was/is relevant"@en ;
-	rdfs:domain caapt:UseContext ; 
-	rdfs:range rdfs:literal ;
-	rdfs:subPropertyOf ontolex:usage .
-
-#################################
-#    Guideline Elements
-#################################
 
 caapt:suggests_replacement_term a owl:ObjectProperty ;
 	rdfs:label "Is suggested replacement term used in the suggestion"@en ;
@@ -181,7 +117,6 @@ skos:Concept a owl:Class .
 
 skos:ConceptScheme a owl:Class .
 
-
 #################################
 #    CULCO Classes
 #################################
@@ -191,7 +126,6 @@ culco:ContentiousIssue a owl:Class .
 culco:ContentiousIssueScheme a owl:Class .
 
 culco:Suggestion a owl:Class .
-
 
 #################################
 #    OntoLex Classes
@@ -204,11 +138,6 @@ ontolex:LexicalConcept a owl:Class .
 ontolex:LexicalEntry a owl:Class .
 
 ontolex:Form a owl:Class .
-
-ontolex:LexicalSense a owl:Class .
-
-frac:Attestation a owl:Class .
-
 
 #################################
 #    CIDOC CRM Classes
@@ -236,15 +165,9 @@ crm:E33_Linguistic_Object a owl:Class .
 
 crm:E39_Actor a owl:Class .
 
-crm:E42_Identifier a owl:Class .
-
-crm:E52_Time-Span a owl:Class .
-
 crm:E53_Place a owl:Class .
 
 crm:E55_Type a owl:Class .
-
-crm:E70_Thing a owl:Class .
 
 crm:E74_Group a owl:Class ;
 	rdfs:subClassOf crm:E39_Actor .
@@ -254,13 +177,7 @@ crm:E74_Group a owl:Class ;
 
 crm:E1_CRM_Entity a owl:Class .
 
-crm:E2_Temporal_Entity a owl:Class .
-
 crm:E89_Propositional_Object a owl:Class .
-
-crm:E90_Symbolic_Object a owl:Class .
-
-crm:E92_Spacetime_Volume a owl:Class .
 
 
 #################################################################
@@ -290,7 +207,6 @@ dcterms:modified
 	dcam:domainIncludes crm:E33_Linguistic_Object ; 
 	dcam:rangeIncludes xsd:date .
 
-
 #################################
 #    SKOS Properties
 #################################
@@ -313,7 +229,6 @@ skos:narrower a owl:ObjectProperty ;
 	rdfs:range skos:Concept ;
 	owl:inverseOf skos:broader . 
 
-
 #################################
 #    CULCO Properties
 #################################
@@ -323,7 +238,6 @@ culco:hasSuggestion a owl:ObjectProperty ;
 	rdfs:range culco:Suggestion ; 
 	dcam:domainIncludes caapt:TermEntry ; 
 	dcam:rangeIncludes caapt:Suggestion . 
-
 
 #################################
 #    OntoLex Properties
@@ -335,43 +249,9 @@ ontolex:isEvokedBy a owl:ObjectProperty ;
 	dcam:domainIncludes caapt:TermEntry ;
 	dcam:rangeIncludes caapt:TermRoot .
 
-ontolex:lexicalizedSense a owl:ObjectProperty ;
-	rdfs:range ontolex:LexicaLConcept ;
-	rdfs:domain ontolex:LexicalSense ;
-	dcam:domainIncludes caapt:TermEntry ; 
-	dcam:rangeIncludes caapt:UseContext .
-
 ontolex:lexicalForm a owl:ObjectProperty ;
 	rdfs:domain ontolex:LexicalEntry ; 
 	rdfs:range ontolex:Form .
-
-ontolex:sense a owl:ObjectProperty ;
-	rdfs:domain ontolex:LexicalEntry ; 
-	rdfs:range ontolex:LexicalSense ; 
-	dcam:domainIncludes caapt:TermRoot ;
-	dcam:rangeIncludes caapt:UseContext .
-
-ontolex:reference a owl:ObjectProperty ;
-	rdfs:domain ontolex:LexicalSense ;
-	rdfs:range rdfs:Resource ;
-	dcam:domainIncludes caapt:UseContext ; 
-	dcam:rangeIncludes crm:E33_Linguistic_Object .
-
-ontolex:isSenseOf a owl:ObjectProperty ;
-	rdfs:domain ontolex:LexicalSense ;
-	rdfs:range ontolex:LexicalConcept ; 
-	dcam:domainIncludes caapt:UseContext ; 
-	dcam:rangeIncludes caapt:TermEntry .
-
-ontolex:usage a owl:ObjectProperty ;
-	rdfs:domain ontolex:LexicalSense ;
-	rdfs:range rdfs:Resource .
-
-frac:attestation a owl:ObjectProperty ;
-	rdfs:domain ontolex:Element ;
-	rdfs:range frac:Attestation ;
-	dcam:domainIncludes ontolex:Form, caapt:UseContext .
-
 
 #################################
 #    CIDOC CRM Properties
@@ -387,51 +267,6 @@ crm:P2_has_type a owl:ObjectProperty ;
 	rdfs:domain crm:E1_CRM_Entity ; 
 	rdfs:range crm:E55_Type ; 
 	dcam:domainIncludes caapt:Suggestion, crm:E29_Design_or_Procedure, crm:E33_Linguistic_Object .
-
-crm:P4_has_time-span a owl:ObjectProperty ; 
-	rdfs:domain crm:E2_Temporal_Entity ; 
-	rdfs:range crm:E52_Time-Span ;
-	dcam:domainIncludes crm:E7_Activity . 
-
-crm:P10_falls_within a owl:ObjectProperty ; 
-	rdfs:domain crm:E92_Spacetime_Volume ; 
-	rdfs:range crm:E92_Spacetime_Volume ; 
-	dcam:domainIncludes crm:E7_Activity ; 
-	dcam:rangeIncludes crm:E7_Activity . 
-
-crm:P11_had_participant a owl:ObjectProperty ; 
-	rdfs:domain crm:E7_Activity ; 
-	rdfs:range crm:E39_Actor ; 
-	dcam:domainIncludes crm:E7_Activity ;
-	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
-
-crm:P14_carried_out_by a owl:ObjectProperty ; 
-	rdfs:domain crm:E7_Activity ; 
-	rdfs:range crm:E39_Actor ; 
-	dcam:domainIncludes crm:E7_Activity, crm:E17_Type_Assignment ;
-	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
-
-crm:P17_was_motivated_by a owl:ObjectPRoperty ; 
-	rdfs:domain crm:E7_Activity ; 
-	rdfs:range crm:E1_CRM_Entity ; 
-	dcam:rangeIncludes caapt:EncounterInstance ;
-	owl:inverseOf crm:P17i_motivated .
-
-crm:P20i_was_purpose_of a owl:ObjectProperty ; 
-	rdfs:domain crm:E5_Event ; 
-	rdfs:range crm:E7_Activity ; 
-	dcam:domainIncludes crm:E7_Activity ;
-	dcam:rangeIncludes crm:E13_Attribute_Assignment .
-
-crm:P21_had_general_purpose a owl:ObjectProperty ; 
-	rdfs:domain crm:E7_Activity ; 
-	rdfs:range crm:E55_Type ;
-	dcam:domainIncludes crm:E13_Attribute_Assignment .
-
-crm:P33_used_specific_technique a owl:ObjectProperty ; 
-	rdfs:domain crm:E7_Activity ; 
-	rdfs:range crm:E29_Design_or_Procedure ;
-	dcma:domainIncludes crm:E29_Design_or_Procedure, caapt:Suggestion .
 
 crm:P41i_was_classified_by a owl:ObjectProperty ; 
 	rdfs:domain crm:E1_CRM_Entity ; 
@@ -487,12 +322,6 @@ crm:P89i_contains a owl:ObjectProperty ;
 	rdfs:range crm:E53_Place ;
 	owl:inverseOf crm:P89_falls_within .
 
-crm:P106i_forms_part_of a owl:ObjectProperty ; 
-	rdfs:domain crm:E90_Symbolic_Object ;
-	rdfs:range crm:E90_Symbolic_Object ;
-	dcam:domainIncludes caapt:EncounterInstance ;
-	dcam:rangeIncludes crm:E31_Document . 
-
 crm:P107_has_current_or_former_member a owl:ObjectProperty ; 
 	rdfs:domain crm:E74_Group ; 
 	rdfs:range crm:E39_Actor ;
@@ -518,26 +347,12 @@ crm:P129i_is_subject_of a owl:ObjectProperty ;
 	dcam:rangeIncludes crm:E33_Linguistic_Object ; 
 	owl:inverseOf crm:P129_is_about .
 
-crm:P134i_was_continued_by a owl:ObjectProperty ; 
-	rdfs:domain crm:E7_Activity .
-	rdfs:range crm:E7_Activity .
-
-crm:P140_assigned_attribute_to a owl:ObjectProperty ; 
-	rdfs:domain crm:E13_Attribute_Assignment ; 
-	rdfs:range crm:E1_CRM_Entity ;
-	dcam:rangeIncludes caapt:EncounterInstance .
-
-crm:P141_assigned a owl:ObjectProperty ; 
-	rdfs:domain crm:E13_Attribute_Assignment ; 
-	rdfs:range crm:E1_CRM_Entity ;
-	dcam:rangeIncludes caapt:UseContext, crm:E55_Type .
-
 crm:P148_has_component a owl:ObjectProperty ; 
 	rdfs:domain crm:E89_Propositional_Object ;
 	rdfs:range crm:E89_Propositional_Object ;
 	dcam:domainIncludes crm:E31_Document ; 
 	dcam:rangeIncludes crm:E31_Document ; 
-	owl:inverseOf crm:P148_is_component_of . 
+	owl:inverseOf crm:P148i_is_component_of . 
 
 crm:P148i_is_component_of a owl:ObjectProperty ;
 	rdfs:domain crm:E89_Propositional_Object ;
@@ -545,12 +360,3 @@ crm:P148i_is_component_of a owl:ObjectProperty ;
 	dcam:domainIncludes crm:E33_Linguistic_Object ;
 	dcam:rangeIncludes caapt:Guide ;
 	owl:inverseOf crm:P148_has_component . 
-
-crm:P3_has_note a owl:DatatypeProperty ;
-	rdfs:domain crm:E1_CRM_Entity ; 
-	rdfs:range rdfs:Literal . 
-
-crm:P82_at_some_time_within a owl:DatatypeProperty ;
-	rdfs:domain crm:E52_Time-Span ; 
-	rdfs:range rdfs:Literal ; 
-	dcam:rangeIncludes xsd:date . 

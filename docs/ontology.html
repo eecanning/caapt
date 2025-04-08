@@ -62,35 +62,30 @@ $(function(){
 <div class="head">
 <!--<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>-->
 <h1>CAAPT-O: Computational Approaches for Addressing Problematic Terminology - Ontology</h1>
-<h2>Release 2024-10-22</h2>
+<h2>Release 2025-04-08</h2>
 
 <dl>
-<dt>This version:</dt><dd><a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-o.ttl">v.1.0.0</a></dd>
-<!--<dt>Previous version:</dt><dd><a href="">v1.0.0</a></dd>
-<dt>Revision:</dt><dd>1.0.0</dd>-->
+<dt>This version:</dt><dd><a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-o.ttl">v.2.0.0</a></dd>
+<dt>Previous version:</dt><dd><a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/v.1.0.0/caapt-o.ttl">v1.0.0</a></dd>
+<!--<dt>Revision:</dt><dd>1.0.0</dd>-->
 <dt>Authors:</dt>
    <dd><a href="">Erin Canning</a><a href="mailto:erin.canning@wolfson.ox.ac.uk">&#9993;</a></dd>
 <dt>Contributors:</dt>
 <dd><a href="https://www.vam.ac.uk/">Victoria and Albert Museum</a></dd>
 <!--<dt>License:</dt><dd><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><img src="https://img.shields.io/badge/License-https://creativecommons.org/licenses/by_sa/4.0/-blue.svg" alt="https://creativecommons.org/licenses/by-sa/4.0/" /></a>
 </dd>
-<dt>Cite as:""</dd>-->
-<dt>Repository:</dt><dd><a href="https://github.com/eecanning/caapt">Github repository</a></dd>
-<!--<dt>Download serialization:</dt><dd>
+<dt>Cite as:""</dd>
+<dt>Repository:</dt><dd><a href="https://github.com/eecanning/caapt">Github repository</a></dd>-->
+<dt>Download serialization:</dt><dd><!--
    <span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span>
    <span><a href="ontology.rdf" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span>
-   <span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span>
+   <span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span>-->
    <span><a href="caapt-o.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd>
-   <dt>DOI:</dt><dd><a href=""><img src ="" alt="" /></a></dd>-->
-<br>
-<dt>CAAPT-O ontology:</dt>
-<dd><a href="https://eecanning.github.io/caapt/ontology">CAAPT-O namespace and documentation</a></dd>
-<dt>CAAPT-UC ontology:</dt>
-<dd><a href="https://eecanning.github.io/caapt/use-contexts">CAAPT-UC namespace and documentation</a></dd>
-<dt>CAAPT-DM ontology:</dt>
-<dd><a href="https://eecanning.github.io/caapt/decision-making">CAAPT-DM namespace and documentation</a></dd>
-
+<!--<dt>DOI:</dt><dd><a href=""><img src ="" alt="" /></a></dd>-->
 </dl>
+<br>
+<dt>Overview reference:</dt>
+<dd><a href="https://eecanning.github.io/caapt/">CAAPT Ontologies</a></dd>
 
 <a href="provenance/provenance-en.html" target="_blank"></a><hr/>
 </div>
@@ -106,11 +101,14 @@ The CAAPT Ontology represents the structure and intellectual contents of termino
 </div>
 <div id="toc"></div> 
 
+
 <!--INTRODUCTION SECTION-->
+
     <div id="introduction"><h2 id="intro" class="list">Introduction</span></h2>
 
-<p>The CAAPT Ontology models the domain of critical cataloguing in museums, focusing on cataloguing revision work. Background information and early work on this project can be found in <a href="https://aclanthology.org/2024.ldl-1.4/">Canning (2024). Defining an Ontology for Museum Critical Cataloguing Terminology Guidelines, Proceedings of the 9th Workshop on Linked Data in Linguistics @ LREC-COLING 2024</a>. The schema is discussed as three separate but interrelated sections: terminology, guidelines, and workflow. The terminology section details the structure and contents of terminology guideline documents which list terms, define various historical and contemporary senses and details, and have associated metadata for the documents themselves. The guidelines section details suggestions made regarding the terms listed in the guidelines document and the relationships between suggestions, terms, and types of fields in records in which a term may be enoucntered. The workflow section details the information necessary to document the identification of potentially problematic terminology in museum catalogue records and the work actions that may occur as a result.</p>
-<p>The CAAPT Ontology was developed primarily to represent the structure and contents of the V&A Museum Terminology Guidelines document, and the reparative cataloguing work actions taking place within that institution. The ontology has been validated through the analysis and incorporation of two other source documents: the glossary section of the publication <a href="https://www.tropenmuseum.nl/en/about-tropenmuseum/words-matter-publication">"Words Matter"</a>--which also served as the source document for the CULCO ontology--and the Cultural Heritage Terminology Networks's <a href="https://culturalheritageterminology.co.uk/glossary-2/">"Inclusive Terminology Glossary"</a>. Forty-five competency questions, and twelve additional sub-questions, were also developed in collaboration with V&A Museum staff, and were also used to evaluate the ontology and the knowledge graph that has been produced for the CAAPT project using the ontology structure defined here. 
+<p>Introductory statement with reference to main page.</p>
+<img src="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-1_caapt-o.png" class="diagram" alt="CAAPT ontology diagram">
+<a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-1_caapt-o.png" target="_blank">View full-size image</a>
 <p>This work is being carried out as a part of the AHRC-funded studentship <a href="https://gtr.ukri.org/projects?ref=studentship-2784579">Computational Approaches for Addressing Problematic Terminology in V&A Museum catalogues</a>.</p>
 
 <div id="namespacedeclarations">
@@ -129,7 +127,6 @@ The CAAPT Ontology represents the structure and intellectual contents of termino
 <tr><td><b>dcterms</b></td><td>&lt;https://purl.org/dc/terms/&gt;</td></tr>
 <tr><td><b>skos</b></td><td>&lt;https://www.w3.org/2004/02/skos/core#&gt;</td></tr>
 <tr><td><b>ontolex</b></td><td>&lt;https://www.w3.org/ns/lemon/ontolex#&gt;</td></tr>
-<tr><td><b>frac</b></td><td>&lt;https://www.w3.org/ns/lemon/frac#&gt;</td></tr>
 <tr><td><b>crm</b></td><td>&lt;https://www.cidoc-crm.org/cidoc-crm/&gt;</td></tr>
 <tr><td><b>culco</b></td><td>&lt;https://w3id.org/culco#&gt;</td></tr>
 <tr><td><b>caapt</b></td><td>&lt;https://w3id.org/caapt/ontology#&gt;</td></tr>
@@ -141,11 +138,10 @@ The CAAPT Ontology represents the structure and intellectual contents of termino
   
 
 <!--OVERVIEW SECTION-->
+
     <div id="overview"><h2 id="overv" class="list">CAAPT-O: Overview</span></h2>
 <span class="markdown">
-This ontology declares the following 8 classes and 11 properties.</span>
-<img src="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-complete.png" class="diagram" alt="CAAPT ontology diagram">
-<a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-complete.png" target="_blank">View full-size image</a>
+This ontology declares the following 6 classes and 6 properties.</span>
 <h4>Classes</h4>
 <ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
    <li>
@@ -164,30 +160,9 @@ This ontology declares the following 8 classes and 11 properties.</span>
       <a href="#https://w3id.org/caapt/ontology#StyleGuide" title="https://w3id.org/caapt/ontology#StyleGuide">StyleGuide</a>
    </li>
    <li>
-      <a href="#https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">UseContext</a>
-   </li>
-   <li>
       <a href="#https://w3id.org/caapt/ontology#Suggestion" title="https://w3id.org/caapt/ontology#Suggestion">Suggestion</a>
    </li>
-   <li>
-      <a href="#https://w3id.org/caapt/ontology#EncounterInstance" title="https://w3id.org/caapt/ontology#EncounterInstance">EncounterInstance</a>
-   </li>
 </ul><h4>Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
-   <li>
-      <a href="#https://w3id.org/caapt/ontology#diachronic_mark" title="https://w3id.org/caapt/ontology#diachronic_mark">diachronic_mark</a>
-   </li>
-   <li>
-      <a href="#https://w3id.org/caapt/ontology#diaevaluative_mark" title="https://w3id.org/caapt/ontology#diaevaluative_mark">diaevaluative_mark</a>
-   </li>
-   <li>
-      <a href="#https://w3id.org/caapt/ontology#diatopic_mark" title="https://w3id.org/caapt/ontology#diatopic_mark">diatopic_mark</a>
-   </li>
-   <li>
-      <a href="#https://w3id.org/caapt/ontology#intended_target_mark" title="https://w3id.org/caapt/ontology#intended_target_mark">intended_target_mark</a>
-   </li>
-   <li>
-      <a href="#https://w3id.org/caapt/ontology#describes_replacing" title="https://w3id.org/caapt/ontology#describes_replacing">describes_replacing</a>
-   </li>
    <li>
       <a href="#https://w3id.org/caapt/ontology#suggests_amending_term" title="https://w3id.org/caapt/ontology#suggests_amending_term">suggests_amending_term</a>
    </li>
@@ -210,14 +185,14 @@ This ontology declares the following 8 classes and 11 properties.</span>
 </div>
    
 
-<!--CROSSREF SECTION-->
+<!--ONTOLOGY DEFINITIONS SECTION-->
+
    <div id="crossref"><h2 id="crossreference" class="list">Definitions for CAAPT-O classes and properties</span></h2>
 This section provides details for each class and property defined by CAAPT-O.
 <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
-   <h3 id="terminology-headline" class="list">Terminology elements</h3>
 <div id="description">
-   <img src="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-1_docs.png" class="diagram" alt="CAAPT ontology diagram - terminology section">
-   <a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-1_docs.png" target="_blank">View full-size image</a>
+   <!--<img src="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-1_docs.png" class="diagram" alt="CAAPT ontology diagram - terminology section">
+   <a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-1_docs.png" target="_blank">View full-size image</a>-->
 </div>
    <h4 id="terminology-classes-headline" class="list">Classes</h4>
    <ul class="hlist">
@@ -237,7 +212,7 @@ This section provides details for each class and property defined by CAAPT-O.
          <a href="https://w3id.org/caapt/ontology#StyleGuide" title="https://w3id.org/caapt/ontology#StyleGuide">Style Guide</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">Use Context</a>
+         <a href="#https://w3id.org/caapt/ontology#Suggestion" title="https://w3id.org/caapt/ontology#Suggestion">Suggestion</a>
       </li>
    </ul>
 
@@ -387,246 +362,6 @@ This section provides details for each class and property defined by CAAPT-O.
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/ontology#UseContext">
-      <h3>UseContext<sup class="type-c" title="class"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/ontology#UseContext</p>
-      <div class="comment">
-         <span class="markdown">Context in which a term was used, often but not necessarily a historical context.</span>
-      </div>
-      <dl class="description">
-         <dt>is subclass of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#LexicalSense" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#LexicalSense">ontolex:LexicalSense</a><sup class="type-c" title="class"></sup>
-         </dd>
-      </dl>
-      <dl class="description">
-         <dt>is in domain of</dt>
-         <dd>
-            <a href="https://w3id.org/caapt/ontology#diachronic_mark" title="https://w3id.org/caapt/ontology#diachronic_mark">diachronic_mark</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://w3id.org/caapt/ontology#diaevaluative_mark" title="https://w3id.org/caapt/ontology#diaevaluative_mark">diaevaluative_mark</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://w3id.org/caapt/ontology#diatopic_mark" title="https://w3id.org/caapt/ontology#diatopic_mark">diatopic_mark</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://w3id.org/caapt/ontology#intended_target_mark" title="https://w3id.org/caapt/ontology#intended_target_mark">intended_target_mark</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://w3id.org/caapt/ontology#describes_replacing" title="https://w3id.org/caapt/ontology#describes_replacing">describes_replacing</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://w3id.org/caapt/ontology#describes_replaced_by" title="https://w3id.org/caapt/ontology#describes_replaced_by">describes_replaced_by</a><sup class="type-op" title="object property"></sup>
-         </dd>
-      </dl>
-      <dl class="description">
-         <dt>is included in domain of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#reference" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#reference">ontolex:reference</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://www.w3.org/ns/lemon/ontolex#isSenseOf" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#isSenseOf">ontolex:isSenseOf</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://www.w3.org/ns/lemon/frac#attestation" target="_blank" title="https://www.w3.org/ns/lemon/frac#attestation">frac:attestation</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://www.cidoc-crm.org/cidoc-crm/P141_assigned" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P141_assigned">crm:P141_assigned</a><sup class="type-op" title="object property"></sup>
-         </dd>
-      </dl>
-      <dl class="description">
-         <dt>is included in range of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#lexicalizedSense" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#lexicalizedSense">ontolex:lexicalizedSense</a><sup class="type-op" title="object property"></sup>,
-            <a href="https://www.w3.org/ns/lemon/ontolex#sense" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#sense">ontolex:sense</a><sup class="type-op" title="object property"></sup>
-         </dd>
-      </dl>
-   </div>
-
-
-   <h4 id="terminology-properties-headline" class="list">Properties</h4>
-   <ul class="hlist">
-      <li>
-         <a href="https://w3id.org/caapt/ontology#diachronic_mark" title="https://w3id.org/caapt/ontology#diachronic_mark">diachronic_mark</a>
-      </li>
-      <li>
-         <a href="https://w3id.org/caapt/ontology#diaevaluative_mark" title="https://w3id.org/caapt/ontology#diaevaluative_mark">diaevaluative_mark</a>
-      </li>
-      <li>
-         <a href="https://w3id.org/caapt/ontology#diatopic_mark" title="https://w3id.org/caapt/ontology#diatopic_mark">diatopic_mark</a>
-      </li>
-      <li>
-         <a href="https://w3id.org/caapt/ontology#intended_target_mark" title="https://w3id.org/caapt/ontology#intended_target_mark">intended_target_mark</a>
-      </li>
-      <li>
-         <a href="https://w3id.org/caapt/ontology#describes_replacing" title="https://w3id.org/caapt/ontology#describes_replacing">describes_replacing</a>
-      </li>
-      <li>
-         <a href="https://w3id.org/caapt/ontology#describes_replaced_by" title="https://w3id.org/caapt/ontology#describes_replaced_by">describes_replaced_by</a>
-      </li>
-   </ul>
-   
-   <div class="entity" id="https://w3id.org/caapt/ontology#diachronic_mark">
-      <h3>diachronic_mark<sup class="type-dp" title="data property"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/ontology#diachronic_mark</p>
-      <div class="comment">
-         <span class="markdown">Time period in which the use context existed or was/is relevant.</span>
-      </div>
-      <div>
-         <dl class="description">
-            <dt>is subproperty of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#usage" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#usage">ontolex:usage</a><sup class="type-op" title="object property"></sup>
-         </dd>
-         </dl>
-         <dl class="description">
-            <dt>has domain</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
-            </dd>
-            <dt>has range</dt>
-            <dd>
-               <a href="https://www.w3.org/2000/01/rdf-schema#literal" target="_blank" title="https://www.w3.org/2000/01/rdf-schema#literal">rdfs:literal</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
-   <div class="entity" id="https://w3id.org/caapt/ontology#diaevaluative_mark">
-      <h3>diaevaluative_mark<sup class="type-op" title="object property"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/ontology#diaevaluative_mark</p>
-      <div class="comment">
-         <span class="markdown">Intended purpose of use of the term in a use context.</span>
-      </div>
-      <div>
-         <dl class="description">
-            <dt>is subproperty of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#usage" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#usage">ontolex:usage</a><sup class="type-op" title="object property"></sup>
-         </dd>
-         </dl>
-         <dl class="description">
-            <dt>has domain</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
-            </dd>
-            <dt>has range</dt>
-            <dd>
-               <a href="https://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E55_Type">crm:E55_Type</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
-   <div class="entity" id="https://w3id.org/caapt/ontology#diatopic_mark">
-      <h3>diatopic_mark<sup class="type-op" title="object property"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/ontology#diatopic_mark</p>
-      <div class="comment">
-         <span class="markdown">Geographic location in which the use context existed or was/is relevant.</span>
-      </div>
-      <div>
-         <dl class="description">
-            <dt>is subproperty of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#usage" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#usage">ontolex:usage</a><sup class="type-op" title="object property"></sup>
-         </dd>
-         </dl>
-         <dl class="description">
-            <dt>has domain</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
-            </dd>
-            <dt>has range</dt>
-            <dd>
-               <a href="https://www.cidoc-crm.org/cidoc-crm/E53_Place" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E53_Place">crm:E53_Place</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
-   <div class="entity" id="https://w3id.org/caapt/ontology#intended_target_mark">
-      <h3>intended_target_mark<sup class="type-op" title="object property"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/ontology#intended_target_mark</p>
-      <div class="comment">
-         <span class="markdown">Group of persons intended to be described by a term in a use context.</span>
-      </div>
-      <div>
-         <dl class="description">
-            <dt>is subproperty of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#usage" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#usage">ontolex:usage</a><sup class="type-op" title="object property"></sup>
-         </dd>
-         </dl>
-         <dl class="description">
-            <dt>has domain</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
-            </dd>
-            <dt>has range</dt>
-            <dd>
-               <a href="https://www.cidoc-crm.org/cidoc-crm/E74_Group" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E74_Group">crm:E74_Group</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
-   <div class="entity" id="https://w3id.org/caapt/ontology#describes_replacing">
-      <h3>describes_replacing<sup class="type-op" title="object property"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/ontology#describes_replacing</p>
-      <div class="comment">
-         <span class="markdown">Term that this sense describes the replacement of; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities".</span>
-      </div>
-      <div>
-         <dl class="description">
-            <dt>is subproperty of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#isSenseOf" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#isSenseOf">ontolex:isSenseOf</a><sup class="type-op" title="object property"></sup>
-         </dd>
-         </dl>
-         <dl class="description">
-            <dt>has domain</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
-            </dd>
-            <dt>has range</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#TermRoot" title="https://w3id.org/caapt/ontology#TermRoot">TermRoot</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
-   <div class="entity" id="https://w3id.org/caapt/ontology#describes_replaced_by">
-      <h3>describes_replaced_by<sup class="type-op" title="object property"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/ontology#describes_replaced_by</p>
-      <div class="comment">
-         <span class="markdown">Term that this sense describes being replaced by; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities".</span>
-      </div>
-      <div>
-         <dl class="description">
-            <dt>is subproperty of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#isSenseOf" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#isSenseOf">ontolex:isSenseOf</a><sup class="type-op" title="object property"></sup>
-         </dd>
-         </dl>
-         <dl class="description">
-            <dt>has domain</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#UseContext" title="https://w3id.org/caapt/ontology#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
-            </dd>
-            <dt>has range</dt>
-            <dd>
-               <a href="https://w3id.org/caapt/ontology#TermRoot" title="https://w3id.org/caapt/ontology#TermRoot">TermRoot</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
-
-<div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dataproperties">
-   <h3 id="guideline-headline" class="list">Guideline elements</h3>
-   <div id="description">
-      <img src="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-2_guides.png" class="diagram" alt="CAAPT ontology diagram - terminology section">
-      <a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-2_guides.png" target="_blank">View full-size image</a>
-</div>
-   <h4 id="guideline-classes-headline" class="list">Classes</h4>
-   <ul class="hlist">
-      <li>
-         <a href="#https://w3id.org/caapt/ontology#Suggestion" title="https://w3id.org/caapt/ontology#Suggestion">Suggestion</a>
-      </li>
-   </ul>
    <div class="entity" id="https://w3id.org/caapt/ontology#Suggestion">
       <h3>Suggestion<sup class="type-c" title="class"></sup></span></h3>
       <p>
@@ -674,7 +409,7 @@ This section provides details for each class and property defined by CAAPT-O.
       </dl>
    </div>
 
-   <h4 id="guideline-properties-headline" class="list">Properties</h4>
+   <h4 id="terminology-properties-headline" class="list">Properties</h4>
    <ul class="hlist">
       <li>
          <a href="#https://w3id.org/caapt/ontology#suggests_amending_term" title="https://w3id.org/caapt/ontology#suggests_amending_term">suggests_amending_term</a>
@@ -848,52 +583,11 @@ This section provides details for each class and property defined by CAAPT-O.
       </div>
    </div>
 
-   <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dataproperties">
-      <h3 id="workflow-headline" class="list">Workflow elements</h3>
-      <div id="description">
-         <img src="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-3_work.png" class="diagram" alt="CAAPT ontology diagram - terminology section">
-         <a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/img/caapt_ontology-3_work.png" target="_blank">View full-size image</a>
-   </div>
-      <h4 id="workflow-classes-headline" class="list">Classes</h4>
-      <ul class="hlist">
-         <li>
-            <a href="#https://w3id.org/caapt/ontology#EncounterInstance" title="https://w3id.org/caapt/ontology#EncounterInstance">EncounterInstance</a>
-         </li>
-      </ul>
-      <div class="entity" id="https://w3id.org/caapt/ontology#EncounterInstance">
-         <h3>EncounterInstance<sup class="type-c" title="class"></sup></span></h3>
-         <p>
-            <strong>IRI:</strong> https://w3id.org/caapt/ontology#EncounterInstance</p>
-         <div class="comment">
-            <span class="markdown">Term encountered in an object record, connected to the context of its location.</span>
-         </div>
-               <dl class="description">
-            <dt>is subclass of</dt>
-            <dd>
-               <a href="https://www.cidoc-crm.org/cidoc-crm/E33_LinguisticObject" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E33_LinguisticObject">crm:E33_LinguisticObject</a><sup class="type-c" title="class"></sup>,
-               <a href="https://www.w3.org/ns/lemon/frac#Attestation" target="_blank" title="https://www.w3.org/ns/lemon/frac#Attestation">frac:Attestation</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-         <dl class="description">
-            <dt>is included in domain of</dt>
-            <dd>
-               <a href="https://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of">crm:P106i_forms_part_of</a><sup class="type-op" title="object property"></sup>
-            </dd>
-            <dt>is included in range of</dt>
-            <dd>
-               <a href="https://www.cidoc-crm.org/cidoc-crm/P17_was_motivated_by" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P17_was_motivated_by">crm:P17_was_motivated_by</a><sup class="type-op" title="object property"></sup>,
-               <a href="https://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to">crm:P140_assigned_attribute_to</a><sup class="type-op" title="object property"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
 
 <!--ONTOLOGY REFERENCES SECTION-->
 
-   
    <div id="crossref"><h2 id="crossreference" class="list">References to other ontologies</span></h2>
-This section listss each class and property directly referenced or used in CAAPT-O.
+This section lists each class and property directly referenced or used in CAAPT-O.
 <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
    <h3 id="ref-skos-headline" class="list">SKOS</h3>
 <div id="description"></div>
@@ -959,19 +653,10 @@ This section listss each class and property directly referenced or used in CAAPT
          <a href="https://www.cidoc-crm.org/cidoc-crm/E39_Actor" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E39_Actor">E39_Actor</a>
       </li>
       <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/E42_Identifier" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E42_Identifier">E42_Identifier</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/E52_Time-Span" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E52_Time-Span">E52_Time-Span</a>
-      </li>
-      <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/E53_Place" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E53_Place">E53_Place</a>
       </li>
       <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E55_Type">E55_Type</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/E70_Thing" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E70_Thing">E70_Thing</a>
       </li>
       <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/E74_Group" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E74_Group">E74_Group</a>
@@ -984,30 +669,6 @@ This section listss each class and property directly referenced or used in CAAPT
       </li>
       <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P2_has_type">P2_has_type</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P4_has_time-span">P4_has_time-span</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P10_falls_within" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P10_falls_within">P10_falls_within</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P11_had_participant" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P11_had_participant">P11_had_participant</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by">P14_carried_out_by</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P17_was_motivated_by" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P17_was_motivated_by">P17_was_motivated_by</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P20i_was_purpose_of" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P20i_was_purpose_of">P20i_was_purpose_of</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P21_had_general_purpose" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P21_had_general_purpose">P21_had_general_purpose</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique">P33_used_specific_technique</a>
       </li>
       <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/P41i_was_classified_by" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P41i_was_classified_by">P41i_was_classified_by</a>
@@ -1040,9 +701,6 @@ This section listss each class and property directly referenced or used in CAAPT
          <a href="https://www.cidoc-crm.org/cidoc-crm/P89i_contains" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P89i_contains">P89i_contains</a>
       </li>
       <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P106i_forms_part_of">P106i_forms_part_of</a>
-      </li>
-      <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member">P107_has_current_or_former_member</a>
       </li>
       <li>
@@ -1055,22 +713,10 @@ This section listss each class and property directly referenced or used in CAAPT
          <a href="https://www.cidoc-crm.org/cidoc-crm/P129i_is_subject_of" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P129i_is_subject_of">P129i_is_subject_of</a>
       </li>
       <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P134i_was_continued_by" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P134i_was_continued_by">P134i_was_continued_by</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to">P140_assigned_attribute_to</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P141_assigned" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P141_assigned">P141_assigned</a>
-      </li>
-      <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/P148_has_component" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P148_has_component">P148_has_component</a>
       </li>
       <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/P148i_is_component_of" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P148i_is_component_of">P148i_is_component_of</a>
-      </li>
-      <li>
-         <a href="https://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P3_has_note">P3_has_note</a>
       </li>
       <li>
          <a href="https://www.cidoc-crm.org/cidoc-crm/P82_at_some_time_within" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/P82_at_some_time_within">P82_at_some_time_within</a>
@@ -1079,7 +725,7 @@ This section listss each class and property directly referenced or used in CAAPT
 </div>
 
 <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
-   <h3 id="ref-ontolex-headline" class="list">OntoLex and FRAC</h3>
+   <h3 id="ref-ontolex-headline" class="list">OntoLex</h3>
 <div id="description"></div>
    <h4 id="ontolex-classes-headline" class="list">Classes</h4>
    <ul class="hlist">
@@ -1095,12 +741,6 @@ This section listss each class and property directly referenced or used in CAAPT
       <li>
          <a href="https://www.w3.org/ns/lemon/ontolex#Form" title="https://www.w3.org/ns/lemon/ontolex#Form">Form</a>
       </li>
-      <li>
-         <a href="https://www.w3.org/ns/lemon/ontolex#LexicalSense" title="https://www.w3.org/ns/lemon/ontolex#LexicalSense">LexicalSense</a>
-      </li>
-      <li>
-         <a href="https://www.w3.org/ns/lemon/frac#Attestation" title="https://www.w3.org/ns/lemon/frac#Attestation">Attestation</a>
-      </li>
    </ul>
    <h4 id="ontolex-properties-headline" class="list">Properties</h4>
    <ul class="hlist">
@@ -1108,25 +748,7 @@ This section listss each class and property directly referenced or used in CAAPT
          <a href="https://www.w3.org/ns/lemon/ontolex#isEvokedBy" title="https://www.w3.org/ns/lemon/ontolex#isEvokedBy">isEvokedBy</a>
       </li>
       <li>
-         <a href="https://www.w3.org/ns/lemon/ontolex#lexicalizedSense" title="https://www.w3.org/ns/lemon/ontolex#lexicalizedSense">lexicalizedSense</a>
-      </li>
-      <li>
          <a href="https://www.w3.org/ns/lemon/ontolex#lexicalForm" title="https://www.w3.org/ns/lemon/ontolex#lexicalForm">lexicalForm</a>
-      </li>
-      <li>
-         <a href="https://www.w3.org/ns/lemon/ontolex#sense" title="https://www.w3.org/ns/lemon/ontolex#sense">sense</a>
-      </li>
-      <li>
-         <a href="https://www.w3.org/ns/lemon/ontolex#reference" title="https://www.w3.org/ns/lemon/ontolex#reference">reference</a>
-      </li>
-      <li>
-         <a href="https://www.w3.org/ns/lemon/ontolex#isSenseOf" title="https://www.w3.org/ns/lemon/ontolex#isSenseOf">isSenseOf</a>
-      </li>
-      <li>
-         <a href="https://www.w3.org/ns/lemon/ontolex#usage" title="https://www.w3.org/ns/lemon/ontolex#usage">usage</a>
-      </li>
-      <li>
-         <a href="https://www.w3.org/ns/lemon/frac#attestation" title="https://www.w3.org/ns/lemon/frac#attestation">attestation</a>
       </li>
    </ul>
 </div>
