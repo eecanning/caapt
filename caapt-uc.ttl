@@ -1,0 +1,145 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcam: <http://purl.org/dc/dcam/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix culco: <https://w3id.org/culco#> .
+@prefix caapt: <https://w3id.org/caapt/ontology#> .
+@prefix caapt-uc: <https://w3id.org/caapt/use-contexts#> .
+# base: <https://w3id.org/caapt/use-contexts#> .
+
+
+#################################################################
+#    CAAPT Ontology: Terminology Use Contexts
+#################################################################
+
+<https://w3id.org/caapt/use-contexts> a owl:Ontology ;
+	rdfs:label "CAAPT Ontology: Terminology Use Contexts"@en ;
+	vann:preferredNamespacePrefix "caapt-uc" ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt/use-contexts#> ;
+	dcterms:created "2023-09-01"^^xsd:date ;
+	dcterms:modified "2024-10-22"^^xsd:date ;
+	dcterms:modified "2025-04-08"^^xsd:date ;
+	dcterms:issued "2025-04-08"^^xsd:date ;
+	dcterms:creator <https://orcid.org/0000-0003-3383-272X> ;
+	dcterms:description "An OWL ontology for the representation of details of the contextual use of terms as described in museum terminology guidance documents." ;
+	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> ;
+	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-uc.ttl> ;
+	owl:versionInfo "1.0.0" .
+
+<https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
+
+
+#################################################################
+#    CAAPT-UC Classes
+#################################################################
+
+caapt-uc:UseContext a owl:Class ;
+	rdfs:label "Context in which a term was used, often but not necessarily a historical context"@en ;
+	rdfs:subClassOf ontolex:LexicalSense .
+
+#################################################################
+#    CAAPT-UC Properties
+#################################################################
+
+caapt-uc:diatopic_mark a owl:ObjectProperty ;
+	rdfs:label "Geographic location in which the use context existed or was/is relevant"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E53_Place ;
+	rdfs:subPropertyOf ontolex:usage .
+
+caapt-uc:diaevaluative_mark a owl:ObjectProperty ;
+	rdfs:label "Intended purpose of use of the term in a use context"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E55_Type ;
+	rdfs:subPropertyOf ontolex:usage .
+
+caapt-uc:intended_target_mark a owl:ObjectProperty ;
+	rdfs:label "Group of persons intended to be described by a term in a use context"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E74_Group ;
+	rdfs:subPropertyOf ontolex:usage .
+
+caap-uct:describes_replacing a owl:ObjectProperty ;
+	rdfs:label "Term that this sense describes the replacement of; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
+	rdfs:domain caapt-uc:UseContext ;
+	rdfs:range ontolex:LexicalEntry ;
+    dcam:rangeIncludes caapt:TermRoot .
+
+caapt-uc:describes_replaced_by a owl:ObjectProperty ;
+	rdfs:label "Term that this sense describes being replaced by; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
+	rdfs:domain caapt-uc:UseContext ;
+	rdfs:range ontolex:LexicalEntry ;
+    dcam:rangeIncludes caapt:TermRoot .
+
+caapt-uc:diachronic_mark a owl:DatatypeProperty ;
+	rdfs:label "Time period in which the use context existed or was/is relevant"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range rdfs:literal ;
+	rdfs:subPropertyOf ontolex:usage .
+
+#################################################################
+#    Referenced Classes
+#################################################################
+
+#################################
+#    CAAPT Classes
+#################################
+
+caapt:TermRoot a owl:Class . 
+
+#################################
+#    OntoLex Classes
+#################################
+
+ontolex:LexicalEntry a owl:Class .
+
+ontolex:LexicalSense a owl:Class .
+
+#################################
+#    CIDOC CRM Classes
+#################################
+
+crm:E39_Actor a owl:Class .
+
+crm:E53_Place a owl:Class .
+
+crm:E55_Type a owl:Class .
+
+crm:E74_Group a owl:Class ;
+	rdfs:subClassOf crm:E39_Actor .
+
+#################################################################
+#    Referenced Properties
+#################################################################
+
+#################################
+#    OntoLex Properties
+#################################
+
+ontolex:lexicalizedSense a owl:ObjectProperty ;
+	rdfs:range ontolex:LexicaLConcept ;
+	rdfs:domain ontolex:LexicalSense ;
+	dcam:domainIncludes caapt:TermEntry ; 
+	dcam:rangeIncludes caapt-uc:UseContext .
+
+ontolex:reference a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalSense ;
+	rdfs:range rdfs:Resource ;
+	dcam:domainIncludes caapt-uc:UseContext ; 
+	dcam:rangeIncludes crm:E33_Linguistic_Object .
+
+ontolex:sense a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalEntry ; 
+	rdfs:range ontolex:LexicalSense ; 
+	dcam:domainIncludes caapt:TermRoot ;
+	dcam:rangeIncludes caapt-uc:UseContext .
+
+ontolex:usage a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalSense ;
+	rdfs:range rdfs:Resource .
