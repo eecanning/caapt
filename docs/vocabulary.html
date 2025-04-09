@@ -101,7 +101,9 @@ The CAAPT Ontology represents the structure and intellectual contents of termino
 </div>
 <div id="toc"></div> 
 
+
 <!--INTRODUCTION SECTION-->
+
     <div id="introduction"><h2 id="intro" class="list">Introduction</span></h2>
 
 <p>Introductory statement with reference to main page.</p>
@@ -131,50 +133,54 @@ The CAAPT Ontology represents the structure and intellectual contents of termino
   
 
 <!--OVERVIEW SECTION-->
+
     <div id="overview"><h2 id="overv" class="list">CAAPT-V: Overview</span></h2>
 <span class="markdown">
 This vocabulary declares the following 4 vocabularies (concept schemes) and 2 concept collections.</span>
 <h4>Vocabularies</h4>
 <ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
    <li>
-      <a href="#https://w3id.org/caapt/vocabulary#term_types" title="https://w3id.org/caapt/vocabulary#term_types">term types</a>
+      <a href="#term_types" title="https://w3id.org/caapt/vocabulary#term_types">term types</a>
    </li>
    <li>
-      <a href="#https://w3id.org/caapt/vocabulary#text_types" title="https://w3id.org/caapt/vocabulary#text_types">text types</a>
+      <a href="#text_types" title="https://w3id.org/caapt/vocabulary#text_types">text types</a>
    </li>
    <li>
-      <a href="#https://w3id.org/caapt/vocabulary#suggestion_actions" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a>
+      <a href="#suggestion_actions" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a>
    </li>
    <li>
-      <a href="#https://w3id.org/caapt/vocabulary#use_intentions" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a>
+      <a href="#use_intentions" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a>
    </li>
 </ul><h4>Concept collections</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
    <li>
-      <a href="#https://w3id.org/caapt/vocabulary#contemporary_context" title="https://w3id.org/caapt/vocabulary#contemporary_context">contemporary context</a>
+      <a href="#contemporary_context" title="https://w3id.org/caapt/vocabulary#contemporary_context">contemporary context</a>
    </li>
    <li>
-      <a href="#https://w3id.org/caapt/vocabulary#historical_context" title="https://w3id.org/caapt/vocabulary#historical_context">historical context</a>
+      <a href="#historical_context" title="https://w3id.org/caapt/vocabulary#historical_context">historical context</a>
    </li>
 </ul>
 </div>
    
 
-<!--CROSSREF SECTION-->
-   <div id="crossref"><h2 id="crossreference" class="list">Definitions for CAAPT-V vocabulary concepts</span></h2>
+<!--VOCABULARY DEFINITIONS SECTION-->
+
+   <div id="vocab_defs"><h2 id="vocab_definitions" class="list">Definitions for CAAPT-V vocabulary concepts</span></h2>
 This section provides details for each concept defined by CAAPT-V.
 <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
-   <h3 id="termtype-headline" class="list">Term types</h3>
-   <h4 id="termtype-concepts-headline" class="list">Concepts</h4>
+   <h3 id="term_types" class="list">Term types</h3>
+   <dd><p><strong>IRI:</strong> https://w3id.org/caapt/vocabulary#term_types</p></dd>
+   <div class="comment">
+   <h4 id="term_types-concepts" class="list">Concepts</h4>
    <ul class="hlist">
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#preferred_term" title="https://w3id.org/caapt/vocabulary#preferred_term">preferred term</a>
+         <a href="#preferred_term" title="https://w3id.org/caapt/vocabulary#preferred_term">preferred term</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#search_term" title="https://w3id.org/caapt/vocabulary#search_term">search term</a>
+         <a href="#search_term" title="https://w3id.org/caapt/vocabulary#search_term">search term</a>
       </li>
    </ul>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#preferred_term">
+   <div class="entity" id="preferred_term">
       <h3>preferred term<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#preferred_term</p>
@@ -189,12 +195,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#term_types" target="_blank" title="https://w3id.org/caapt/vocabulary#term_types">term types</a><sup class="type-c" title="class"></sup> 
+            <a href="#term_types" target="_blank" title="https://w3id.org/caapt/vocabulary#term_types">term types</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#search_term">
+   <div class="entity" id="search_term">
       <h3>search term<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#search_term</p>
@@ -209,27 +215,28 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#term_types" target="_blank" title="https://w3id.org/caapt/vocabulary#term_types">term types</a><sup class="type-c" title="class"></sup> 
+            <a href="#term_types" target="_blank" title="https://w3id.org/caapt/vocabulary#term_types">term types</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
 <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
-   <h3 id="texttype-headline" class="list">Text types</h3>
-   <h4 id="texttype-concepts-headline" class="list">Concepts</h4>
+   <h3 id="text_types" class="list">Text types</h3>
+   <dd><p><strong>IRI:</strong> https://w3id.org/caapt/vocabulary#text_types</p></dd>
+   <h4 id="text_types-concepts" class="list">Concepts</h4>
    <ul class="hlist">
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#description" title="https://w3id.org/caapt/vocabulary#description">description</a>
+         <a href="#description" title="https://w3id.org/caapt/vocabulary#description">description</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#etymological" title="https://w3id.org/caapt/vocabulary#etymological">etymological</a>
+         <a href="#etymological" title="https://w3id.org/caapt/vocabulary#etymological">etymological</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#sensitivity" title="https://w3id.org/caapt/vocabulary#sensitivity">sensitivity</a>
+         <a href="#sensitivity" title="https://w3id.org/caapt/vocabulary#sensitivity">sensitivity</a>
       </li>
    </ul>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#description">
+   <div class="entity" id="description">
       <h3>description<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#description</p>
@@ -244,12 +251,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#text_types" target="_blank" title="https://w3id.org/caapt/vocabulary#text_types">text types</a><sup class="type-c" title="class"></sup> 
+            <a href="#text_types" target="_blank" title="https://w3id.org/caapt/vocabulary#text_types">text types</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#etymological">
+   <div class="entity" id="etymological">
       <h3>etymological<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#etymological</p>
@@ -264,12 +271,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#text_types" target="_blank" title="https://w3id.org/caapt/vocabulary#text_types">text types</a><sup class="type-c" title="class"></sup> 
+            <a href="#text_types" target="_blank" title="https://w3id.org/caapt/vocabulary#text_types">text types</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#sensitivity">
+   <div class="entity" id="sensitivity">
       <h3>sensitivity<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#sensitivity</p>
@@ -284,54 +291,55 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#text_types" target="_blank" title="https://w3id.org/caapt/vocabulary#text_types">text types</a><sup class="type-c" title="class"></sup> 
+            <a href="#text_types" target="_blank" title="https://w3id.org/caapt/vocabulary#text_types">text types</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
 <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
-   <h3 id="sugtype-headline" class="list">Suggestion actions</h3>
-   <h4 id="sigtype-concepts-headline" class="list">Concepts</h4>
+   <h3 id="suggestion_actions" class="list">Suggestion actions</h3>
+   <dd><p><strong>IRI:</strong> https://w3id.org/caapt/vocabulary#suggestion_actions</p></dd>
+   <h4 id="suggestion_actions-concepts" class="list">Concepts</h4>
    <ul class="hlist">
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#add_context_text" title="https://w3id.org/caapt/vocabulary#add_context_text">add context text</a>
+         <a href="#add_context_text" title="https://w3id.org/caapt/vocabulary#add_context_text">add context text</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#consult" title="https://w3id.org/caapt/vocabulary#consult">consult</a>
+         <a href="#consult" title="https://w3id.org/caapt/vocabulary#consult">consult</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#content_warning" title="https://w3id.org/caapt/vocabulary#content_warning">content warning</a>
+         <a href="#content_warning" title="https://w3id.org/caapt/vocabulary#content_warning">content warning</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#disclaimer" title="https://w3id.org/caapt/vocabulary#disclaimer">disclaimer</a>
+         <a href="#disclaimer" title="https://w3id.org/caapt/vocabulary#disclaimer">disclaimer</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#format" title="https://w3id.org/caapt/vocabulary#format">format</a>
+         <a href="#format" title="https://w3id.org/caapt/vocabulary#format">format</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#quotes" title="https://w3id.org/caapt/vocabulary#quotes">quotes</a>
+         <a href="#quotes" title="https://w3id.org/caapt/vocabulary#quotes">quotes</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#rephrase" title="https://w3id.org/caapt/vocabulary#rephrase">rephrase</a>
+         <a href="#rephrase" title="https://w3id.org/caapt/vocabulary#rephrase">rephrase</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#remove" title="https://w3id.org/caapt/vocabulary#remove">remove</a>
+         <a href="#remove" title="https://w3id.org/caapt/vocabulary#remove">remove</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#reword" title="https://w3id.org/caapt/vocabulary#reword">reword</a>
+         <a href="#reword" title="https://w3id.org/caapt/vocabulary#reword">reword</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#self_identify" title="https://w3id.org/caapt/vocabulary#self_identify">self identify</a>
+         <a href="#self_identify" title="https://w3id.org/caapt/vocabulary#self_identify">self identify</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#specific" title="https://w3id.org/caapt/vocabulary#specific">specific</a>
+         <a href="#specific" title="https://w3id.org/caapt/vocabulary#specific">specific</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#stet" title="https://w3id.org/caapt/vocabulary#stet">stet</a>
+         <a href="#stet" title="https://w3id.org/caapt/vocabulary#stet">stet</a>
       </li>
    </ul>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#add_context_text">
+   <div class="entity" id="add_context_text">
       <h3>add context text<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#add_context_text</p>
@@ -346,12 +354,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#consult">
+   <div class="entity" id="consult">
       <h3>consult<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#consult</p>
@@ -366,12 +374,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#content_warning">
+   <div class="entity" id="content_warning">
       <h3>content warning<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#content_warning</p>
@@ -386,12 +394,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#disclaimer">
+   <div class="entity" id="disclaimer">
       <h3>disclaimer<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#disclaimer</p>
@@ -406,12 +414,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#format">
+   <div class="entity" id="format">
       <h3>format<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#format</p>
@@ -426,12 +434,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#quotes">
+   <div class="entity" id="quotes">
       <h3>quotes<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#quotes</p>
@@ -446,12 +454,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#rephrase">
+   <div class="entity" id="rephrase">
       <h3>rephrase<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#rephrase</p>
@@ -466,12 +474,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#remove">
+   <div class="entity" id="remove">
       <h3>remove<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#remove</p>
@@ -486,12 +494,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#reword">
+   <div class="entity" id="reword">
       <h3>reword<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#reword</p>
@@ -506,12 +514,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#self_identify">
+   <div class="entity" id="self_identify">
       <h3>self identify<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#self_identify</p>
@@ -526,12 +534,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#specific">
+   <div class="entity" id="specific">
       <h3>specific<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#specific</p>
@@ -546,12 +554,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
    
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#stet">
+   <div class="entity" id="stet">
       <h3>stet<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#stet</p>
@@ -566,63 +574,64 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
+            <a href="#suggestion_actions" target="_blank" title="https://w3id.org/caapt/vocabulary#suggestion_actions">suggestion actions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
 <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
-   <h3 id="usetype-headline" class="list">Use intentions</h3>
-   <h4 id="usetype-concepts-headline" class="list">Concepts</h4>
+   <h3 id="use_intentions" class="list">Use intentions</h3>
+   <dd><p><strong>IRI:</strong> https://w3id.org/caapt/vocabulary#use_intentions</p></dd>
+   <h4 id="use_intentions-concepts" class="list">Concepts</h4>
    <ul class="hlist">
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#ableism" title="https://w3id.org/caapt/vocabulary#ableism">ableism</a>
+         <a href="#ableism" title="https://w3id.org/caapt/vocabulary#ableism">ableism</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#antisemitism" title="https://w3id.org/caapt/vocabulary#antisemitism">antisemitism</a>
+         <a href="#antisemitism" title="https://w3id.org/caapt/vocabulary#antisemitism">antisemitism</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#classism" title="https://w3id.org/caapt/vocabulary#classism">classism</a>
+         <a href="#classism" title="https://w3id.org/caapt/vocabulary#classism">classism</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#colonialism" title="https://w3id.org/caapt/vocabulary#colonialism">colonialism</a>
+         <a href="#colonialism" title="https://w3id.org/caapt/vocabulary#colonialism">colonialism</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#derogatory" title="https://w3id.org/caapt/vocabulary#derogatory">derogatory</a>
+         <a href="#derogatory" title="https://w3id.org/caapt/vocabulary#derogatory">derogatory</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#empowerment" title="https://w3id.org/caapt/vocabulary#empowerment">empowerment</a>
+         <a href="#empowerment" title="https://w3id.org/caapt/vocabulary#empowerment">empowerment</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#homophobia" title="https://w3id.org/caapt/vocabulary#homophobia">homophobia</a>
+         <a href="#homophobia" title="https://w3id.org/caapt/vocabulary#homophobia">homophobia</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#legal" title="https://w3id.org/caapt/vocabulary#legal">legal</a>
+         <a href="#legal" title="https://w3id.org/caapt/vocabulary#legal">legal</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#medical" title="https://w3id.org/caapt/vocabulary#medical">medical</a>
+         <a href="#medical" title="https://w3id.org/caapt/vocabulary#medical">medical</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#misogyny" title="https://w3id.org/caapt/vocabulary#misogyny">misogyny</a>
+         <a href="#misogyny" title="https://w3id.org/caapt/vocabulary#misogyny">misogyny</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#political" title="https://w3id.org/caapt/vocabulary#political">political</a>
+         <a href="#political" title="https://w3id.org/caapt/vocabulary#political">political</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#racism" title="https://w3id.org/caapt/vocabulary#racism">racism</a>
+         <a href="#racism" title="https://w3id.org/caapt/vocabulary#racism">racism</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#reclaim" title="https://w3id.org/caapt/vocabulary#reclaim">reclaim</a>
+         <a href="#reclaim" title="https://w3id.org/caapt/vocabulary#reclaim">reclaim</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#respectful" title="https://w3id.org/caapt/vocabulary#respectful">respectful</a>
+         <a href="#respectful" title="https://w3id.org/caapt/vocabulary#respectful">respectful</a>
       </li>
       <li>
-         <a href="https://w3id.org/caapt/vocabulary#xenophobia" title="https://w3id.org/caapt/vocabulary#xenophobia">xenophobia</a>
+         <a href="#xenophobia" title="https://w3id.org/caapt/vocabulary#xenophobia">xenophobia</a>
       </li>
    </ul>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#ableism">
+   <div class="entity" id="ableism">
       <h3>ableism<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#ableism</p>
@@ -637,12 +646,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#antisemitism">
+   <div class="entity" id="antisemitism">
       <h3>antisemitism<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#antisemitism</p>
@@ -657,12 +666,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#classism">
+   <div class="entity" id="classism">
       <h3>classism<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#classism</p>
@@ -677,12 +686,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#colonialism">
+   <div class="entity" id="colonialism">
       <h3>colonialism<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#colonialism</p>
@@ -697,12 +706,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#derogatory">
+   <div class="entity" id="derogatory">
       <h3>derogatory<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#derogatory</p>
@@ -717,12 +726,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#empowerment">
+   <div class="entity" id="empowerment">
       <h3>empowerment<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#empowerment</p>
@@ -737,12 +746,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#homophobia">
+   <div class="entity" id="homophobia">
       <h3>homophobia<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#homophobia</p>
@@ -757,12 +766,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#legal">
+   <div class="entity" id="legal">
       <h3>legal<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#legal</p>
@@ -777,12 +786,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#medical">
+   <div class="entity" id="medical">
       <h3>medical<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#medical</p>
@@ -797,12 +806,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#misogyny">
+   <div class="entity" id="misogyny">
       <h3>misogyny<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#misogyny</p>
@@ -817,12 +826,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#political">
+   <div class="entity" id="political">
       <h3>political<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#political</p>
@@ -837,12 +846,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#racism">
+   <div class="entity" id="racism">
       <h3>racism<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#racism</p>
@@ -857,12 +866,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#reclaim">
+   <div class="entity" id="reclaim">
       <h3>reclaim<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#reclaim</p>
@@ -877,12 +886,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#respectful">
+   <div class="entity" id="respectful">
       <h3>respectful<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#respectful</p>
@@ -897,12 +906,12 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
-   <div class="entity" id="https://w3id.org/caapt/vocabulary#xenophobia">
+   <div class="entity" id="xenophobia">
       <h3>xenophobia<sup class="type-c" title="class"></sup></span></h3>
       <p>
          <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#xenophobia</p>
@@ -917,25 +926,25 @@ This section provides details for each concept defined by CAAPT-V.
          </dd>
          <dt>in scheme</dt>
          <dd>
-            <a href="https://w3id.org/caapt/vocabulary#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
+            <a href="#use_intentions" target="_blank" title="https://w3id.org/caapt/vocabulary#use_intentions">use intentions</a><sup class="type-c" title="class"></sup> 
          </dd>
       </dl>
    </div>
 
 
    <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
-      <h3 id="collection-headline" class="list">SKOS Collections</h3>
-      <h4 id="collection-concepts-headline" class="list">Collections</h4>
+      <h3 id="collections" class="list">SKOS Collections</h3>
+      <h4 id="collections-concepts" class="list">Collections</h4>
       <ul class="hlist">
          <li>
-            <a href="https://w3id.org/caapt/vocabulary#contemporary_context" title="https://w3id.org/caapt/vocabulary#contemporary_context">contemporary context</a>
+            <a href="#contemporary_context" title="https://w3id.org/caapt/vocabulary#contemporary_context">contemporary context</a>
          </li>
          <li>
-            <a href="https://w3id.org/caapt/vocabulary#historical_context" title="https://w3id.org/caapt/vocabulary#historical_context">historical context</a>
+            <a href="#historical_context" title="https://w3id.org/caapt/vocabulary#historical_context">historical context</a>
          </li>
       </ul>
    
-      <div class="entity" id="https://w3id.org/caapt/vocabulary#contemporary_context">
+      <div class="entity" id="contemporary_context">
          <h3>contemporary_context<sup class="type-c" title="class"></sup></span></h3>
          <p>
             <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#contemporary_context</p>
@@ -950,7 +959,7 @@ This section provides details for each concept defined by CAAPT-V.
          </dl>
       </div>
 
-      <div class="entity" id="https://w3id.org/caapt/vocabulary#historical_context">
+      <div class="entity" id="historical_context">
          <h3>historical_context<sup class="type-c" title="class"></sup></span></h3>
          <p>
             <strong>IRI:</strong> https://w3id.org/caapt/vocabulary#historical_context</p>
