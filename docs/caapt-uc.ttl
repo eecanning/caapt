@@ -47,6 +47,12 @@ caapt-uc:UseContext a owl:Class ;
 #    CAAPT-UC Properties
 #################################################################
 
+caapt-uc:diachronic_mark a owl:ObjectProperty ;
+	rdfs:label "Time period in which the use context existed or was/is relevant"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E52_Time-Span ;
+	rdfs:subPropertyOf ontolex:usage .
+
 caapt-uc:diatopic_mark a owl:ObjectProperty ;
 	rdfs:label "Geographic location in which the use context existed or was/is relevant"@en ;
 	rdfs:domain caapt-uc:UseContext ; 
@@ -77,11 +83,6 @@ caapt-uc:describes_replaced_by a owl:ObjectProperty ;
 	rdfs:range ontolex:LexicalEntry ;
     dcam:rangeIncludes caapt:TermRoot .
 
-caapt-uc:diachronic_mark a owl:DatatypeProperty ;
-	rdfs:label "Time period in which the use context existed or was/is relevant"@en ;
-	rdfs:domain caapt-uc:UseContext ; 
-	rdfs:range crm:E52_Time-Span ;
-	rdfs:subPropertyOf ontolex:usage .
 
 #################################################################
 #    Referenced Classes
@@ -145,7 +146,6 @@ ontolex:sense a owl:ObjectProperty ;
 ontolex:usage a owl:ObjectProperty ;
 	rdfs:domain ontolex:LexicalSense ;
 	rdfs:range rdfs:Resource .
-
 
 #################################
 #    CIDOC CRM Properties
