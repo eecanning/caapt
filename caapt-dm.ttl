@@ -132,11 +132,11 @@ crm:E74_Group a owl:Class ;
 
 # Referenced as CRM Property domains or ranges below 
 
-E1_CRM_Entity a owl:Class .
+crm:E1_CRM_Entity a owl:Class .
 
 crm:E2_Temporal_Entity a owl:Class .
 
-E73_Information_Object a owl:Class .
+crm:E73_Information_Object a owl:Class .
 
 crm:E90_Symbolic_Object a owl:Class .
 

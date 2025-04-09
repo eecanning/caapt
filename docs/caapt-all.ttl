@@ -1,0 +1,819 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix dcam: <http://purl.org/dc/dcam/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix frac: <http://www.w3.org/ns/lemon/frac#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix culco: <https://w3id.org/culco#> .
+@prefix caapt: <https://w3id.org/caapt/ontology#> .
+@prefix caapt-uc: <https://w3id.org/caapt/use-contexts#> .
+@prefix caapt-dm: <https://w3id.org/caapt/decision-making#> .
+@prefix caapt-v: <https://w3id.org/caapt/vocabulary#> .
+
+
+#################################################################
+#    CAAPT Ontologies and Vocabularies
+#    ! This is a reference compilation file only !
+#    ! Refer to individual ontology and vocabulary files !
+#################################################################
+
+<https://w3id.org/caapt/ontology> a owl:Ontology ;
+	rdfs:label "CAAPT Ontology"@en ;
+	vann:preferredNamespacePrefix "caapt" ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt/ontology#> .
+
+<https://w3id.org/caapt/use-contexts> a owl:Ontology ;
+	rdfs:label "CAAPT Ontology: Terminology Use Contexts"@en ;
+	vann:preferredNamespacePrefix "caapt-uc" ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt/use-contexts#> .
+
+<https://w3id.org/caapt/decision-making> a owl:Ontology ;
+	rdfs:label "CAAPT Ontology: Critical Cataloguing Decision-Making"@en ;
+	vann:preferredNamespacePrefix "caapt-dm" ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt/decision-making#> .
+
+<https://w3id.org/caapt/vocabulary> a void:Dataset ;
+	rdfs:label "CAAPT Vocabularies"@en ;
+	vann:preferredNamespacePrefix "caapt-v" ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt/vocab#> .
+
+
+#################################################################
+#    CAAPT-O
+#################################################################
+
+#################################
+#    CAAPT-O Classes
+#################################
+
+caapt:TermEntry a owl:Class ;
+	rdfs:label "Entry of a term in a language guidance document"@en ;
+	rdfs:subClassOf skos:Concept, crm:E55_Type, ontolex:LexicalConcept, culco:ContentiousIssue .
+
+caapt:TermRoot a owl:Class ; 
+	rdfs:label "Lexical entry of a term in a language guidance document"@en ; 
+	rdfs:subClassOf ontolex:LexicalEntry, crm:E33_Linguistic_Object .
+
+caapt:Guide a owl:Class ; 
+	rdfs:label "Written guidance on language use"@en ;
+	rdfs:subClassOf skos:ConceptScheme, crm:E32_Authority_Document, crm:E33_Linguistic_Object, ontolex:ConceptSet .
+
+caapt:TerminologyGuide a owl:Class ;
+	rdfs:label "Written guidance for addressing problematic terminology created with the intention of assisting in reparative description work or education around reparative description work"@en ;
+	rdfs:subClassOf caapt:Guide, culco:ContentiousIssueScheme . 
+
+caapt:StyleGuide a owl:Class ; 
+	rdfs:label "Written guidance for language style and use"@en ;
+	rdfs:subClassOf caapt:Guide . 
+
+caapt:Suggestion a owl:Class ;
+	rdfs:label "Suggested action to be taken when a term is encountered"@en ;
+	rdfs:subClassOf culco:Suggestion, crm:E29_Design_or_Procedure .
+
+#################################
+#    CAAPT-O Properties
+#################################
+
+caapt:suggests_replacement_term a owl:ObjectProperty ;
+	rdfs:label "Is suggested replacement term used in the suggestion"@en ;
+	rdfs:domain caapt:Suggestion ; 
+	rdfs:range ontolex:LexicalEntry .
+
+caapt:suggests_amending_term a owl:ObjectProperty ;
+	rdfs:label "Is suggested amending term used in the suggestion"@en ;
+	rdfs:domain caapt:Suggestion ; 
+	rdfs:range ontolex:LexicalEntry .
+
+caapt:preferred a owl:ObjectProperty ;
+	rdfs:label "Suggestion that is preferred"@en ;
+	rdfs:domain caapt:Suggestion ; 
+	rdfs:range caapt:Suggestion ;
+	owl:inverseOf caapt:if_not_possible_use ;
+	rdfs:subPropertyOf crm:P69_has_association_with .
+
+caapt:if_not_possible_use a owl:ObjectProperty ;
+	rdfs:label "Suggestion to be considered if preferred suggestion is not possible to use"@en ;
+	rdfs:domain caapt:Suggestion ; 
+	rdfs:range caapt:sSggestion ;
+	owl:inverseOf caapt:preferred ;
+	rdfs:subPropertyOf crm:P69i_is_associated_with .
+
+caapt:use_along_with a owl:ObjectProperty ;
+	rdfs:label "Suggestion to be used concurrently"@en ;
+	rdfs:domain caapt:Suggestion ; 
+	rdfs:range caapt:Suggestion ;
+	rdfs:subPropertyOf crm:P69_has_association_with .
+
+caapt:encountered a owl:ObjectProperty ;
+	rdfs:label "Suggestion encountered in cataloguing field"@en ;
+	rdfs:domain caapt:Suggestion ; 
+	rdfs:range skos:Collection .
+
+
+#################################################################
+#    CAAPT-UC
+#################################################################
+
+#################################
+#    CAAPT-UC Classes
+#################################
+
+caapt-uc:UseContext a owl:Class ;
+	rdfs:label "Context in which a term was used, often but not necessarily a historical context"@en ;
+	rdfs:subClassOf ontolex:LexicalSense .
+
+#################################
+#    CAAPT-UC Properties
+#################################
+
+caapt-uc:diachronic_mark a owl:DatatypeProperty ;
+	rdfs:label "Time period in which the use context existed or was/is relevant"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E52_Time-Span ;
+	rdfs:subPropertyOf ontolex:usage .
+
+caapt-uc:diatopic_mark a owl:ObjectProperty ;
+	rdfs:label "Geographic location in which the use context existed or was/is relevant"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E53_Place ;
+	rdfs:subPropertyOf ontolex:usage .
+
+caapt-uc:diaevaluative_mark a owl:ObjectProperty ;
+	rdfs:label "Intended purpose of use of the term in a use context"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E55_Type ;
+	rdfs:subPropertyOf ontolex:usage .
+
+caapt-uc:intended_target_mark a owl:ObjectProperty ;
+	rdfs:label "Group of persons intended to be described by a term in a use context"@en ;
+	rdfs:domain caapt-uc:UseContext ; 
+	rdfs:range crm:E74_Group ;
+	rdfs:subPropertyOf ontolex:usage .
+
+caap-uct:describes_replacing a owl:ObjectProperty ;
+	rdfs:label "Term that this sense describes the replacement of; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
+	rdfs:domain caapt-uc:UseContext ;
+	rdfs:range ontolex:LexicalEntry ;
+    dcam:rangeIncludes caapt:TermRoot .
+
+caapt-uc:describes_replaced_by a owl:ObjectProperty ;
+	rdfs:label "Term that this sense describes being replaced by; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
+	rdfs:domain caapt-uc:UseContext ;
+	rdfs:range ontolex:LexicalEntry ;
+    dcam:rangeIncludes caapt:TermRoot .
+
+
+#################################################################
+#    CAAPT-DM
+#################################################################
+
+#################################
+#    CAAPT-DM Classes
+#################################
+
+caapt-dm:EncounterInstance a owl:Class ;
+	rdfs:label "Term encountered in an object record, connected to the context of its location"@en ;
+	rdfs:subClassOf crm:E33_Linguistic_Object, frac:Attestation, oa:Annotation .  
+
+
+#################################################################
+#    CAAPT-V
+#################################################################
+
+#################################
+#    Term Types
+#################################
+
+caapt-v:term_types a skos:ConceptScheme ;
+    rdfs:label "types of terms"@en .
+
+caapt-v:preferred_term a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "preferred term, often suggested as a preferred alternative to a search term"@en ;
+    skos:inScheme caapt-v:term_types .
+
+caapt-v:search_term a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "term to be searched for"@en ;
+    skos:inScheme caapt-v:term_types .
+
+#################################
+#    Text Types
+#################################
+
+caapt-v:text_types a skos:ConceptScheme ;
+    rdfs:label "types of texts"@en .
+
+caapt-v:description a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "description relating to the meanings and uses of the term, including senses/contextualised uses"@en ;
+    skos:inScheme caapt-v:text_types .
+
+caapt-v:etymological a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "description relating to the origin and historical development of the term"@en ;
+    skos:inScheme caapt-v:text_types .
+
+caapt-v:sensitivity a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "description relating to the sensitivities and concerns regarding use of the term, particularly as it pertains to the contemporary context"@en ;
+    skos:inScheme caapt-v:text_types .
+
+#################################
+#    Suggestion Actions
+#################################
+
+caapt-v:suggestion_actions a skos:ConceptScheme ;
+    rdfs:label "types of suggestion actions"@en .
+
+caapt-v:add_context_text a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add contextualising text"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:consult a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "consult a consultation group"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:content_warning a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add content warning"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:disclaimer a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add disclaimer text according to instructions"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:format a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "ensure word spelled and/or formatted according to instructions"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:quotes a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add quotation marks"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:rephrase a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Change how the line in question is written"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:remove a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "remove term"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:reword a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "replace with suggested term"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:self_identify a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "check how the person/people in question self-identify and use that term"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:specific a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "be more specific"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:stet a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "do not change"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+#################################
+#    Use Intentions
+#################################
+
+caapt-v:intentions a skos:ConceptScheme ;
+    rdfs:label "types of intentions"@en .
+
+caapt-v:ableism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonstrate or further ableist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:antisemitism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonstrate or further antisemitic attitudes"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:classism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonstrate or further classist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:colonialism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonstrate or further colonialist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:derogatory a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used in a derogatory manner or with derogatory intent"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:empowerment a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used as a term of empowerment"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:homophobia a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonsrate or further homophobic beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:legal a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used for legal definition"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:medical a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used for medical definition"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:misogyny a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonstrate or further misogynistic beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:political a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used for political action"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:racism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonstrate or further racist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:reclaim a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "harmful term reclaimed by community"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:respectful a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used in a respectful manner or with respectful intent"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:xenophobia a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "used to demonsrate or further xenophobic beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+#################################
+#    SKOS Collections
+#################################
+
+caapt-v:contemporary_context a skos:Collection ;
+    rdfs:label "contemporary context that can be changed without altering the historical record"@en .
+
+caapt-v:historical_context a skos:Collection ;
+    rdfs:label "historical context that cannot be changed without altering the historical record"@en .
+
+
+#################################################################
+#    Referenced Classes
+#################################################################
+
+#################################
+#    CULCO Classes
+#################################
+
+culco:ContentiousIssue a owl:Class .
+
+culco:ContentiousIssueScheme a owl:Class .
+
+culco:Suggestion a owl:Class .
+
+#################################
+#    SKOS Classes
+#################################
+
+skos:Concept a owl:Class .
+
+skos:ConceptScheme a owl:Class .
+
+skos:Collection a owl:Class .
+
+#################################
+#    OntoLex Classes
+#################################
+
+ontolex:ConceptSet a owl:Class .
+
+ontolex:Form a owl:Class .
+
+ontolex:LexicalConcept a owl:Class .
+
+ontolex:LexicalEntry a owl:Class .
+
+ontolex:LexicalSense a owl:Class .
+
+frac:Attestation a owl:Class .
+
+#################################
+#    Web Annotation Model Classes
+#################################
+
+oa:Annotation a owl:Class .
+
+oa:TextQuoteSelector a owl:Class ;
+    rdfs:subClassOf oa:Selector .
+
+oa:FragmentSelector a owl:Class ;
+    rdfs:subClassOf oa:Selector .
+
+oa:ResourceSelection a owl:Class .
+
+oa:Selector a owl:Class .
+
+oa:SpecificResource a owl:Class ;
+    rdfs:subClassOf oa:ResourceSelection .
+
+oa:Motivation a owl:Class .
+
+#################################
+#    CIDOC CRM Classes
+#################################
+
+crm:E7_Activity a owl:Class .
+
+crm:E13_Attribute_Assignment a owl:Class .
+
+crm:E17_Type_Assignment a owl:Class ;
+	rdfs:subClassOf crm:E13_Attribute_Assignment .
+
+crm:E21_Person a owl:Class ; 
+    rdfs:subClassOf crm:E39_Actor .
+
+crm:E29_Design_or_Procedure a owl:Class .
+
+crm:E31_Document a owl:Class .
+
+crm:E32_Authority_Document a owl:Class ;
+	rdfs:subClassOf crm:E31_Document . 
+
+crm:E33_Linguistic_Object a owl:Class .
+
+crm:E39_Actor a owl:Class .
+
+crm:E42_Identifier a owl:Class .
+
+crm:E52_Time-Span a owl:Class .
+
+crm:E53_Place a owl:Class .
+
+crm:E55_Type a owl:Class .
+
+crm:E70_Thing a owl:Class .
+
+crm:E74_Group a owl:Class ; 
+    rdfs:subClassOf crm:E39_Actor .
+
+
+# Referenced as CRM Property domains or ranges below 
+
+crm:E1_CRM_Entity a owl:Class .
+
+crm:E2_Temporal_Entity a owl:Class .
+
+crm:E73_Information_Object a owl:Class .
+
+crm:E90_Symbolic_Object a owl:Class .
+
+crm:E92_Spacetime_Volume a owl:Class .
+
+
+#################################################################
+#    Referenced Properties
+#################################################################
+
+#################################
+#    CULCO Properties
+#################################
+
+culco:hasSuggestion a owl:ObjectProperty ; 
+	rdfs:domain culco:ContentiousIssue ; 
+	rdfs:range culco:Suggestion ; 
+	dcam:domainIncludes caapt:TermEntry ; 
+	dcam:rangeIncludes caapt:Suggestion . 
+
+#################################
+#    SKOS Properties
+#################################
+
+skos:broader a owl:ObjectProperty ;
+	rdfs:domain skos:Concept ;
+	rdfs:range skos:Concept ;
+	owl:inverseOf skos:narrower .
+
+skos:inScheme a owl:ObjectProperty ; 
+	rdfs:domain skos:Concept ; 
+	rdfs:range skos:ConceptScheme . 
+
+skos:member a owl:ObjectProperty ; 
+	rdfs:domain skos:Collection ; 
+	rdfs:range skos:Concept . 
+
+skos:narrower a owl:ObjectProperty ;
+	rdfs:domain skos:Concept ;
+	rdfs:range skos:Concept ;
+	owl:inverseOf skos:broader . 
+
+#################################
+#    Web Annotation Model Properties
+#################################
+
+oa:exact a owl:ObjectProperty ; 
+    rdfs:domain oa:Selector ;
+    rdfs:range xsd:string ;
+    dcam:domainIncludes oa:TextQuoteSelector .
+
+oa:hasBody a owl:ObjectProperty ; 
+    rdfs:domain oa:Annotation ;
+    dcam:rangeIncludes ontolex:Form .
+
+oa:hasPurpose a owl:ObjectProperty ; 
+    rdfs:domain oa:Annotation ;
+    rdfs:range oa:Motivation ;
+    dcam:domainIncludes caapt-dm:EncounterInstance .
+
+oa:hasSource a owl:ObjectProperty ; 
+    rdfs:domain oa:ResourceSelection ; 
+    dcam:domainIncludes oa:SpecificResource ;
+    dcam:rangeIncludes crm:E31_Document . 
+
+oa:hasTarget a owl:ObjectProperty ; 
+    rdfs:domain oa:Annotation ;
+    rdfs:range oa:ResourceSelection ; 
+    dcam:domainIncludes caapt-dm:EncounterInstance ;
+    dcam:rangeIncludes oa:SpecificResource .
+
+oa:refinedBy a owl:ObjectProperty ; 
+    rdfs:domain oa:Selector ;
+    rdfs:range oa:Selector ;
+    dcam:domainIncludes oa:FragmentSelector ; 
+    dcam:rangeIncludes oa:TextQuoteSelector .
+
+#################################
+#    OntoLex Properties
+#################################
+
+ontolex:isEvokedBy a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalConcept ; 
+	rdfs:range ontolex:LexicalEntry ; 
+	dcam:domainIncludes caapt:TermEntry ;
+	dcam:rangeIncludes caapt:TermRoot .
+
+ontolex:lexicalForm a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalEntry ; 
+	rdfs:range ontolex:Form .
+
+ontolex:lexicalizedSense a owl:ObjectProperty ;
+	rdfs:range ontolex:LexicaLConcept ;
+	rdfs:domain ontolex:LexicalSense ;
+	dcam:domainIncludes caapt:TermEntry ; 
+	dcam:rangeIncludes caapt-uc:UseContext .
+
+ontolex:reference a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalSense ;
+	rdfs:range rdfs:Resource ;
+	dcam:domainIncludes caapt-uc:UseContext ; 
+	dcam:rangeIncludes crm:E33_Linguistic_Object .
+
+ontolex:sense a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalEntry ; 
+	rdfs:range ontolex:LexicalSense ; 
+	dcam:domainIncludes caapt:TermRoot ;
+	dcam:rangeIncludes caapt-uc:UseContext .
+
+ontolex:usage a owl:ObjectProperty ;
+	rdfs:domain ontolex:LexicalSense ;
+	rdfs:range rdfs:Resource .
+
+frac:attestation a owl:ObjectProperty ;
+	rdfs:domain ontolex:Element ;
+	rdfs:range frac:Attestation ;
+	dcam:domainIncludes ontolex:Form, caapt-uc:UseContext .
+
+#################################
+#    CIDOC CRM Properties
+#################################
+
+crm:P1_is_identified_by a owl:ObjectProperty ; 
+	rdfs:domain crm:E1_CRM_Entity ; 
+	rdfs:range crm:E41_Appellation ; 
+	dcam:rangeIncludes crm:E31_Document, crm:E70_Thing ;
+	dcam:domainIncludes crm:E42_Identifier . 
+
+crm:P2_has_type a owl:ObjectProperty ; 
+	rdfs:domain crm:E1_CRM_Entity ; 
+	rdfs:range crm:E55_Type ; 
+	dcam:domainIncludes crm:E7_Activity, crm:E31_Document .
+
+crm:P4_has_time-span a owl:ObjectProperty ; 
+	rdfs:domain crm:E2_Temporal_Entity ; 
+	rdfs:range crm:E52_Time-Span ;
+	dcam:domainIncludes crm:E7_Activity . 
+
+crm:P10_falls_within a owl:ObjectProperty ; 
+	rdfs:domain crm:E92_Spacetime_Volume ; 
+	rdfs:range crm:E92_Spacetime_Volume ; 
+	dcam:domainIncludes crm:E7_Activity ; 
+	dcam:rangeIncludes crm:E7_Activity . 
+
+crm:P11_had_participant a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E39_Actor ; 
+	dcam:domainIncludes crm:E7_Activity ;
+	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
+
+crm:P14_carried_out_by a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E39_Actor ; 
+	dcam:domainIncludes crm:E7_Activity, crm:E13_Attribute_Assignment ;
+	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
+
+crm:P15_was_influenced_by a owl:ObjectProperty ; 
+    rdfs:domain crm:E7_Activity ; 
+    rdfs:range crm:E1_CRM_Entity ;
+    dcam:rangeIncludes caapt-dm:EncounterInstance ;
+
+crm:P17_was_motivated_by a owl:ObjectPRoperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E1_CRM_Entity ; 
+	dcam:rangeIncludes caapt-dm:EncounterInstance ;
+    owl:subPropertyOf crm:P15_was_influenced_by .
+
+crm:P20i_was_purpose_of a owl:ObjectProperty ; 
+	rdfs:domain crm:E5_Event ; 
+	rdfs:range crm:E7_Activity ; 
+	dcam:domainIncludes crm:E7_Activity ;
+	dcam:rangeIncludes crm:E13_Attribute_Assignment .
+
+crm:P21_had_general_purpose a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E55_Type ;
+	dcam:domainIncludes crm:E13_Attribute_Assignment .
+
+crm:P33_used_specific_technique a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity ; 
+	rdfs:range crm:E29_Design_or_Procedure ;
+	dcma:domainIncludes crm:E29_Design_or_Procedure, caapt:Suggestion .
+
+crm:P41i_was_classified_by a owl:ObjectProperty ; 
+	rdfs:domain crm:E1_CRM_Entity ; 
+	rdfs:range crm:E17_Type_Assignment ; 
+	dcam:rangeIncludes ontolex:LexicalEntry .
+
+crm:P42_assigned a owl:ObjectProperty ; 
+	rdfs:domain crm:E17_Type_Assignment ; 
+	rdfs:range crm:E55_Type .
+
+crm:P67_refers_to a owl:ObjectProperty ; 
+	rdfs:domain crm:E89_Propositional_Object ; 
+	rdfs:range crm:E1_CRM_Entity ; 
+	dcam:domainIncludes caapt:Suggestion, crm:E33_Linguistic_Object ;
+	dcam:rangeIncludes crm:E33_Linguistic_Object .
+
+crm:P69_has_association_with a owl:ObjectProperty ; 
+	rdfs:domain crm:E29_Design_or_Procedure ; 
+	rdfs:range crm:E29_Design_or_Procedure .
+
+crm:P70i_is_documented_in a owl:ObjectProperty ; 
+	rdfs:domain crm:E1_CRM_Entity ; 
+	rdfs:range crm:E31_Document ; 
+	dcam:domainIncludes crm:E17_Type_Assignment, caapt:Suggestion ;
+	dcam:rangeIncludes caapt:TerminologyGuide .
+
+crm:P71i_is_listed_in a owl:ObjectProperty ; 
+	rdfs:domain crm:E1_CRM_Entity ; 
+	rdfs:range crm:E32_Authority_Document ; 
+	dcam:domainIncludes caapt:TermEntry ;
+	dcam:rangeIncludes caapt:Guide, caapt:TerminologyGuide, caapt:StyleGuide ;
+	owl:inverseOf crm:P71i_lists .
+	
+crm:P74_has_current_or_former_residence a owl:ObjectProperty ; 
+	rdfs:domain crm:E39_Actor ; 
+	rdfs:range crm:E53_Place ; 
+	dcam:domainIncludes crm:E74_Group ;
+	owl:inverseOf crm:P74i_is_current_or_former_residence_of . 
+
+crm:P74i_is_current_or_former_residence_of a owl:ObjectProperty ; 
+	rdfs:domain crm:E53_Place ; 
+	rdfs:range crm:E39_Actor ; 
+	rdfs:rangeIncludes crm:E74_Group ; 
+	owl:inverseOf crm:P74_has_current_or_former_residence . 
+
+crm:P89_falls_within a owl:ObjectProperty ; 
+	rdfs:domain crm:E53_Place ; 
+	rdfs:range crm:E53_Place ;
+	owl:inverseOf crm:P89i_contains .
+
+crm:P89i_contains a owl:ObjectProperty ; 
+	rdfs:domain crm:E53_Place ; 
+	rdfs:range crm:E53_Place ;
+	owl:inverseOf crm:P89_falls_within .
+
+crm:P106i_forms_part_of a owl:ObjectProperty ; 
+	rdfs:domain crm:E90_Symbolic_Object ;
+	rdfs:range crm:E90_Symbolic_Object ;
+	dcam:domainIncludes caapt-dm:EncounterInstance ;
+	dcam:rangeIncludes crm:E31_Document . 
+
+crm:P107_has_current_or_former_member a owl:ObjectProperty ; 
+	rdfs:domain crm:E74_Group ; 
+	rdfs:range crm:E39_Actor ;
+	owl:inverseOf crm:P107i_is_current_or_former_member_of . 
+
+crm:P107i_is_current_or_former_member_of a owl:ObjectProperty ; 
+	rdfs:domain crm:E39_Actor ; 
+	rdfs:range crm:E74_Group ; 
+	owl:inverseOf crm:P107_has_current_or_former_member . 
+
+crm:P129_is_about a owl:ObjectProperty ; 
+	rdfs:domain crm:E89_Propositional_Object ; 
+	rdfs:range crm:E1_CRM_Entity ; 
+	dcam:domainIncludes crm:E31_Document ; 
+	dcam:rangeIncludes crm:E70_Thing .
+
+crm:P134i_was_continued_by a owl:ObjectProperty ; 
+	rdfs:domain crm:E7_Activity .
+	rdfs:range crm:E7_Activity .
+
+crm:P140_assigned_attribute_to a owl:ObjectProperty ; 
+	rdfs:domain crm:E13_Attribute_Assignment ; 
+	rdfs:range crm:E1_CRM_Entity ;
+	dcam:rangeIncludes caapt-dm:EncounterInstance .
+
+crm:P141_assigned a owl:ObjectProperty ; 
+	rdfs:domain crm:E13_Attribute_Assignment ; 
+	rdfs:range crm:E1_CRM_Entity ;
+	dcam:rangeIncludes caapt-uc:UseContext, crm:E55_Type .
+
+crm:P148_has_component a owl:ObjectProperty ; 
+	rdfs:domain crm:E89_Propositional_Object ;
+	rdfs:range crm:E89_Propositional_Object ;
+	dcam:domainIncludes crm:E31_Document ; 
+	dcam:rangeIncludes crm:E31_Document ; 
+	owl:inverseOf crm:P148i_is_component_of . 
+
+crm:P148i_is_component_of a owl:ObjectProperty ;
+	rdfs:domain crm:E89_Propositional_Object ;
+	rdfs:range crm:E89_Propositional_Object ;
+	dcam:domainIncludes crm:E31_Document ;
+	dcam:rangeIncludes crm:E31_Document . 
+
+crm:P165i_is_incorporated_by a owl:ObjectProperty ;
+    rdfs:domain crm:E90_Symbolic_Object ;
+    rdfs:range crm:E73_Information_Object ; 
+    dcam:domainIncludes crm:E33_Linguistic_Object ;
+    dcam:rangeIncludes crm:E31_Document .
+
+crm:P82_at_some_time_within a owl:DatatypeProperty ;
+	rdfs:domain crm:E52_Time-Span ; 
+	rdfs:range rdfs:Literal ; 
+	dcam:rangeIncludes xsd:date . 
+
+crm:P190_has_symbolic_content a owl:DatatypeProperty ;
+    rdfs:domain crm:E90_Symbolic_Object ; 
+    rdfs:range xsd:string ;
+    dcam:rangeIncludes crm:E33_Linguistic_Object .
+
+#################################
+#    Dublin Core Properties
+#################################
+
+dcterms:contributor a owl:ObjectProperty ;
+	dcam:domainIncludes crm:E33_Linguistic_Object ; 
+	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
+
+dcterms:created
+	dcam:domainIncludes crm:E33_Linguistic_Object ; 
+	dcam:rangeIncludes xsd:date .
+
+dcterms:creator a owl:ObjectProperty ;
+	rdfs:subPropertyOf dcterms:contributor .
+
+dcterms:mediator
+	dcam:domainIncludes caapt:Suggestion ; 
+	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
+
+dcterms:modified
+	dcam:domainIncludes crm:E33_Linguistic_Object ; 
+	dcam:rangeIncludes xsd:date .
