@@ -1,0 +1,632 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#> 
+PREFIX frac: <http://www.w3.org/ns/lemon/frac#>
+PREFIX culco: <https://w3id.org/culco#>
+PREFIX caapt: <https://w3id.org/caapt/ontology#>
+PREFIX caapt-uc: <https://w3id.org/caapt/use-contexts#>
+PREFIX caapt-dm: <https://w3id.org/caapt/decision-making#>
+PREFIX caapt-v: <https://w3id.org/caapt/vocabulary#>
+
+
+# CQ 1.   What institutions have written guidelines?
+SELECT DISTINCT ?creatorName
+WHERE {
+    ?guide a caapt:TerminologyGuide ; 
+        dcterms:creator ?creator .
+    ?creator rdfs:label ?creatorName .
+}
+
+
+# CQ 2.   What is the most recently edited guideline?
+SELECT DISTINCT ?guideLabel ?createdDate
+WHERE {
+    ?guide a caapt:TerminologyGuide ; 
+        rdfs:label ?guideLabel ;
+        dcterms:created ?createdDate .
+} 
+ORDER BY DESC(?createdDate)
+LIMIT 1
+
+
+# CQ 3.   When was the terminology guideline entry for this term last edited?
+SELECT ?lastDate
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        crm:P129i_is_subject_of ?description . 
+    ?description a crm:E33_Linguistic_Object .
+
+    OPTIONAL {?description dcterms:created ?createdDate}
+    OPTIONAL {?description dcterms:modified ?modifiedDate}
+  
+    BIND(COALESCE(?createdDate, ?modifiedDate) AS ?lastDate)
+}
+ORDER BY DESC(?lastDate)
+LIMIT 1
+
+
+# CQ 4.   Which terminology guidelines list this term?
+SELECT DISTINCT ?guideLabel
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        crm:P71i_is_listed_in ?guide . 
+    ?guide rdfs:label ?guideLabel . 
+}
+
+
+# CQ 5.   Does a given institution (e.g. V&A, Tropenmuseum, Cultural Heritage Terminology Network) have guidance about this term?
+ASK {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+           crm:P71i_is_listed_in ?guide . 
+    ?guide a caapt:TerminologyGuide ; 
+           rdfs:label "EXAMPLE INSTITUTION NAME"@en .
+}
+
+
+# CQ 6.   What information about this term is available?
+SELECT * WHERE 
+{
+    {
+        SELECT (COUNT(DISTINCT ?termUse) as ?NumberOfUseContexts)
+        WHERE {
+            <https://example.org/EXAMPLE_TERM> ontolex:sense ?termUse .
+            ?termUse rdf:value ?termUseValue . 
+        }
+    }
+UNION
+    {
+        SELECT (COUNT(DISTINCT ?description) as ?NumberOfDescriptions)
+        WHERE {
+            ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+                crm:P129i_is_subject_of ?description .
+        }
+    }
+UNION
+    {
+        SELECT (COUNT(DISTINCT ?classification) as ?NumberOfClassifications)
+        WHERE {
+            <https://example.org/EXAMPLE_TERM> crm:P41i_was_classified_by ?classification .
+        }
+    }
+UNION
+    {
+        SELECT (COUNT(DISTINCT ?description) as ?NumberOfDescriptions)
+        WHERE {
+            ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+                culco:hasSuggestion ?suggestion .
+        }
+    }
+}
+
+
+# CQ 7.   What explanations of different meanings for this term over place and time are available for this term?
+SELECT DISTINCT ?termUse ?termUseValue
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:sense ?termUse .
+    ?termUse rdf:value ?termUseValue .
+}
+
+
+# CQ 8.   What information about people, places, and times is available for this term?
+SELECT ?when ?where ?why ?who
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:sense ?termUse .
+
+    OPTIONAL {?termUse caapt-uc:diachronic_mark ?when }
+    OPTIONAL {?termUse caapt-uc:diatopic_mark ?where }
+    OPTIONAL {?termUse caapt-uc:diaevaluative_mark ?why }
+    OPTIONAL {?termUse caapt-uc:intended_target_mark ?who }
+}
+
+
+# CQ 9.   What descriptions of sensitivities are available for this term?
+SELECT DISTINCT ?descValue
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        crm:P129i_is_subject_of ?description .
+    ?description rdf:value ?descValue ; 
+        crm:P2_has_type caapt-v:sensitivity .
+}
+
+
+# CQ 10.  How is this term classified?
+SELECT DISTINCT ?classTypeLabel
+WHERE {
+    <https://example.org/EXAMPLE_TERM> crm:P41i_was_classified_by ?classification .
+    ?classification crm:P42_assigned ?classType .
+    ?classType rdfs:label ?classTypeLabel .
+}
+
+
+# CQ 11.  Who has classified this term?
+SELECT DISTINCT ?classifierName
+WHERE {
+    <https://example.org/EXAMPLE_TERM> crm:P41i_was_classified_by ?classification .
+    ?classification crm:P14_carried_out_by ?classifier .
+    ?classifier rdfs:label ?classifierName .
+}
+
+
+# CQ 12.  What are all terms in a given category (e.g. problematic, preferred, etc.)?
+SELECT DISTINCT ?termLabel
+WHERE {
+    ?term rdfs:label ?termLabel ;
+        crm:P41i_was_classified_by ?classification .
+    ?classification crm:P42_assigned <https://example.org/EXAMPLE_CLASSIFICATION_TYPE> .
+}
+
+
+# CQ 13.  What is the meaning of the classification used to identify potentially problematic terminology?
+SELECT DISTINCT ?classTypeLabel
+WHERE {
+    caapt-v:sensitivity rdfs:label ?classTypeLabel .
+}
+
+
+# CQ 14.  Are sources cited in the description of or guidance for this term?
+ASK {
+{
+    SELECT ?ref ?refLabel
+    WHERE {
+        ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+            culco:hasSuggestion ?sug .
+        ?sug crm:P67_refers_to ?ref .
+        ?ref rdfs:label ?refLabel .
+    }
+}
+UNION
+{
+    SELECT ?ref ?refLabel
+    WHERE {
+        ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+            crm:P129i_is_subject_of ?desc .
+        ?desc crm:P67_refers_to ?ref .
+        ?ref rdfs:label ?refLabel .
+        }
+    }
+}
+
+
+# CQ 15.  What sources are cited in the description of or guidance for this term?
+SELECT DISTINCT ?refLabel
+WHERE {
+{
+    SELECT ?ref ?refLabel
+    WHERE {
+        ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+            culco:hasSuggestion ?sug .
+        ?sug crm:P67_refers_to ?ref .
+        ?ref rdfs:label ?refLabel .
+    }
+}
+UNION
+{
+    SELECT ?ref ?refLabel
+    WHERE {
+        ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+            crm:P129i_is_subject_of ?desc .
+        ?desc crm:P67_refers_to ?ref .
+        ?ref rdfs:label ?refLabel .
+        }
+    }
+}
+
+
+# CQ 16.  Who is referenced the most in descriptions of or guidance for this term?
+SELECT ?refLabel
+WHERE {
+{
+    SELECT ?ref ?refLabel
+    WHERE {
+        ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+            culco:hasSuggestion ?sug .
+        ?sug crm:P67_refers_to ?ref .
+        ?ref rdfs:label ?refLabel .
+    }
+}
+UNION
+{
+    SELECT ?ref ?refLabel
+    WHERE {
+        ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+            crm:P129i_is_subject_of ?desc .
+        ?desc crm:P67_refers_to ?ref .
+        ?ref rdfs:label ?refLabel .
+        }
+    }
+}
+GROUP BY ?refLabel
+ORDER BY DESC(COUNT(?ref))
+LIMIT 1
+
+
+# CQ 17.  Which terms have descriptions of or guidance that cite a specific resource or organisation?
+SELECT DISTINCT ?termLabel
+WHERE {
+{
+    SELECT ?termLabel
+    WHERE {
+        ?term rdfs:label ?termLabel .
+        ?entry ontolex:isEvokedBy ?term ;
+            culco:hasSuggestion ?sug .
+        ?sug crm:P67_refers_to <https://example.org/EXAMPLE_REFERENCE> .
+    }
+}
+UNION
+{
+    SELECT ?termLabel
+    WHERE {
+        ?term rdfs:label ?termLabel .
+        ?entry ontolex:isEvokedBy ?term ;
+            crm:P129i_is_subject_of ?desc .
+        ?desc crm:P67_refers_to <https://example.org/EXAMPLE_REFERENCE> .
+        }
+    }
+}
+
+
+# CQ 18.  Are there suggestions for this term?
+ASK {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+}
+
+
+# CQ 19.  What suggestions are listed for this term?
+SELECT DISTINCT ?sugValue
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug rdf:value ?sugValue .
+}
+
+
+# CQ 20.  What are the suggestion details for the different possible uses of this term?
+SELECT DISTINCT ?termUse ?sugValue
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:sense ?termUse .
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug rdf:value ?sugValue .
+
+    OPTIONAL {?sug crm:P129_is_about ?contents }
+    OPTIONAL {?termUse caapt-uc:diachronic_mark ?when}
+    OPTIONAL {?termUse caapt-uc:diatopic_mark ?where}
+    OPTIONAL {?termUse caapt-uc:diaevaluative_mark ?why}
+    OPTIONAL {?termUse caapt-uc:intended_target_mark ?who}
+
+    FILTER NOT EXISTS {
+        ?sug crm:P129_is_about ?c .
+        FILTER(?c NOT IN (?when, ?where, ?why, ?who))
+    }
+  
+    VALUES ?prop { caapt-uc:diachronic_mark caapt-uc:diatopic_mark caapt-uc:diaevaluative_mark caapt-uc:intended_target_mark }
+ 
+    FILTER NOT EXISTS {
+        ?termUse ?prop ?v .
+        ?sug crm:P129_is_about ?c .
+        FILTER (?c IN (?when, ?where, ?why, ?who) && ?v != ?c)
+    }
+}
+
+
+# CQ 21.  What types of suggestions are listed for this term?
+SELECT DISTINCT ?sugTypeLabel
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug crm:P2_has_type ?sugType .
+    ?sugType rdfs:label ?sugTypeLabel .
+}
+
+
+# CQ 22.  Is a specific type of suggestion suggested for this term?
+ASK {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug crm:P2_has_type ?sugType .
+    ?sugType rdfs:label ?sugTypeLabel .
+
+    FILTER(?sugType IN (<https://example.org/EXAMPLE_SUGGESTION_TYPE>))
+}
+
+
+# CQ 23.  What are the "preferred" terms suggested for this term?
+SELECT DISTINCT ?prefTermLabel
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug caapt:suggests_replacement_term ?prefTerm .
+    ?prefTerm rdfs:label ?prefTermLabel .
+}
+
+
+# CQ 24.  What contextual text is suggested for this term?
+SELECT DISTINCT ?sugValue ?contextTextValue
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug rdf:value ?sugValue ;
+        crm:P2_has_type <https://w3id.org/caapt/vocab#add_context_text> .
+    OPTIONAL {?sug crm:P69_has_association_with ?contextText . ?contextText rdf:value ?contextTextValue .}
+}
+
+
+# CQ 25.  What are the suggestions for this term when encounter location is a historical field that can't be changed?
+SELECT DISTINCT ?sugValue
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug rdf:value ?sugValue ;
+        caapt:encountered caapt-v:historical_context .
+}
+
+
+# CQ 26.  Who is recommended to consult with about this term?
+SELECT DISTINCT ?consultantName
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug rdf:value ?sugValue ;
+        dcterms:mediator ?consultant ;
+        crm:P2_has_type <https://w3id.org/caapt/vocab#consult> .
+    ?consultant rdfs:label ?consultantName .
+}
+
+
+# CQ 27.  What suggestions are listed in which guideline documents for this term?
+SELECT DISTINCT ?sug ?sugValue ?guideLabel
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug rdf:value ?sugValue ;
+        crm:P70i_is_documented_in ?guide .
+    ?guide rdfs:label ?guideLabel .
+}
+
+
+# CQ 28.  What is a given institution's (e.g. V&A, Tropenmuseum, Cultural Heritage Terminology Network) guidance for this term?
+SELECT DISTINCT ?creator ?sug ?sugValue
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+    ?sug rdf:value ?sugValue ;
+        dcterms:creator <https://example.org/EXAMPLE_INSTITUTION> .
+} ORDER BY ?creator ?sug
+
+
+# CQ 29.  Where suggestions have been made in multiple guidelines for this term, are they of the same type(s)?
+SELECT DISTINCT ?guide ?sugType
+WHERE {
+    {
+        SELECT ?term (COUNT(DISTINCT ?guide) AS ?guideCount)
+        WHERE {
+        ?entry ontolex:isEvokedBy ?term ;
+            culco:hasSuggestion ?sug .
+        ?sug crm:P70i_is_documented_in ?guide ;
+            crm:P2_has_type ?sugType .
+        FILTER(?term IN (<https://example.org/EXAMPLE_INSTITUTION>))
+        }
+    GROUP BY ?term
+    HAVING (?guideCount >1)
+    }
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_INSTITUTION> ;
+        culco:hasSuggestion ?sug .
+    ?sug crm:P2_has_type ?sugType ;
+        crm:P70i_is_documented_in ?guide .  
+} 
+GROUP BY ?sugType ?guide
+
+
+# CQ 30.  When was a suggestion entry for this term last edited?
+SELECT ?lastDate
+WHERE {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+        culco:hasSuggestion ?sug .
+
+    OPTIONAL {?sug dcterms:created ?createdDate}
+    OPTIONAL {?sug dcterms:modified ?modifiedDate}
+  
+    BIND(COALESCE(?createdDate, ?modifiedDate) AS ?lastDate)
+}
+ORDER BY DESC(?lastDate)
+LIMIT 1
+
+
+# CQ 31.  How many times has this term be found in the catalogue records?
+SELECT (COUNT(DISTINCT ?encounter) as ?NumberOfEncounters)
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form frac:attestation ?encounter .
+}
+
+
+# CQ 32.  In which records has this term be found?
+SELECT DISTINCT ?enRecordIDValue
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form ?frac:attestation ?encounter . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enRecord crm:P1_is_identified_by ?enRecordID .
+    ?enRecordID rdf:value ?enRecordIDValue .
+}
+
+
+# CQ 33.  What records have had this term flagged and what actions were taken?
+SELECT DISTINCT ?enRecordIDValue ?actionValue
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form ?frac:attestation ?encounter . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enRecord crm:P1_is_identified_by ?enRecordID .
+    ?enRecordID rdf:value ?enRecordIDValue .
+    ?action crm:P15_was_influenced_by ?encounter ;
+        rdf:value ?actionValue . 
+}
+
+
+# CQ 34.  What records with this term have been changed, and what are the details around that?
+SELECT DISTINCT ?enRecordID ?actionValue
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form ?frac:attestation ?encounter . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enRecord crm:P1_is_identified_by ?enRecordID .
+
+    {
+        ?action crm:P15_was_influenced_by ?encounter ;
+            rdf:value ?actionValue ;
+            crm:P33_used_specific_technique ?sug .
+        ?sug crm:P2_has_type ?sugType .
+
+        FILTER(?sugType NOT IN (caapt-v:consult, caapt-v:content_warning, caapt-v:stet))
+    }
+}
+
+
+# CQ 35.  Which records contain this term and have no associated actions?
+SELECT DISTINCT ?enRecordIDValue
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form ?frac:attestation ?encounter . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enRecord crm:P1_is_identified_by ?enRecordID .
+    ?enRecordID rdf:value ?enRecordIDValue .
+
+    FILTER NOT EXISTS {
+        ?action crm:P15_was_influenced_by ?encounter .
+    }
+}
+
+
+# CQ 36.  Has this record been reviewed already?
+ASK {
+    ?enRecord crm:P1_is_identified_by <https://example.org/EXAMPLE_RECORD> .
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?action crm:P15_was_influenced_by ?encounter .
+}
+
+
+# CQ 37.  Who has reviewed records that contained this term?
+SELECT DISTINCT ?personLabel
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form ?frac:attestation ?encounter . 
+    
+    OPTIONAL {?enActivity crm:P15_was_influenced_by ?encounter ; crm:P14_carried_out_by ?p1 . ?p1 rdfs:label ?p1Label}
+    OPTIONAL {?enActivity crm:P15_was_influenced_by ?encounter ; crm:P14_carried_out_by ?p2 . ?p2 rdfs:label ?p2Label}
+    
+    BIND(COALESCE(?p1Label, ?p2Label) AS ?personLabel)
+}
+
+
+# CQ 38.  What sources informed an action?
+SELECT DISTINCT ?sugRefLabel
+WHERE {
+    ?encounter a caapt-dm:EncounterInstance .
+    <https://example.org/EXAMPLE_ACTION> crm:P15_was_influenced_by ?encounter ;
+        crm:P33_used_specific_technique ?sug .
+    ?sug crm:P67_refers_to ?sugRef .
+    ?sugRef rdfs:label ?sugRefLabel . 
+}
+
+
+# CQ 39.  What records had a specific type of suggestion decided as a reparative method?
+SELECT DISTINCT ?enRecordIDValue
+WHERE {
+    ?enRecordID rdf:value ?enRecordIDValue .
+    ?enRecord crm:P1_is_identified_by ?enRecordID .
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?action crm:P15_was_influenced_by ?encounter ;
+        crm:P33_used_specific_technique ?sug .
+    ?sug crm:P2_has_type ?sugType . 
+   
+    FILTER(?sugType IN (<https://example.org/EXAMPLE_SUGGESTION_TYPE>))
+}
+
+
+# CQ 40.  Which records have had specific types of terms for which the decision was to change the text?
+SELECT DISTINCT ?enRecordIDValue
+WHERE {
+    ?enRecordID rdf:value ?enRecordIDValue .
+    ?enRecord crm:P1_is_identified_by ?enRecordID .
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?action crm:P15_was_influenced_by ?encounter ;
+        crm:P33_used_specific_technique ?sug .
+    ?sug crm:P2_has_type ?sugType. 
+    ?form ?frac:attestation ?encounter . 
+    ?term ontolex:lexicalForm ?form ;
+        crm:P41i_was_classified_by ?classification .
+    ?classification crm:P42_assigned <https://example.org/EXAMPLE_CLASSIFICATION> .
+
+    FILTER(?sugType IN (caapt-v:remove, caapt-v:reword))
+}
+
+
+# CQ 41.  Which meaning of a term is most frequently used when the term is found in a record?
+SELECT ?termUseValue
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form ?frac:attestation ?encounter . 
+    ?assign crm:P140_assigned_attribute_to ?encounter ; 
+        crm:P141_assigned ?termUse .
+    ?termUse a caapt-uc:UseContext ;
+        rdf:value ?termUseValue .
+}
+GROUP BY ?termUseValue
+ORDER BY DESC(COUNT(?termUse))
+LIMIT 1
+
+
+CQ 42.  Which records reference being discussed at the Terminology Discussion Forum most recently?
+SELECT DISTINCT ?enRecordIDValue ?dateStamp
+WHERE {
+    ?enRecordID rdf:value ?enRecordIDValue .
+    ?enRecord crm:P1_is_identified_by ?enRecordID .
+    ?enField crm:P148i_is_component_of ?enRecord . 
+    ?enText crm:P165i_is_incorporated_by ?enField . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+    ?action crm:P15_was_influenced_by ?encounter ;
+        crm:P10_falls_within ?discussion .
+    ?discussion a crm:E7_Activity ; 
+        rdfs:label ?discussionLabel ;
+        crm:P4_has_time-span ?date . 
+    ?date crm:P82_at_some_time_within ?dateStamp . 
+
+    FILTER(CONTAINS(LCASE(STR(?value)), "terminology discussion forum"))
+}
+ORDER BY DESC(?dateStamp)
+
+
+CQ 43.  What was the text of the record that was then changed as part of remediating this term?
+SELECT DISTINCT ?enText
+WHERE {
+    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    ?form ?frac:attestation ?encounter . 
+    ?encounter crm:P106i_forms_part_of ?enText .
+
+    {
+        ?action crm:P15_was_influenced_by ?encounter .
+        ?action crm:P33_used_specific_technique ?sug .
+        ?sug crm:P2_has_type ?sugType .
+
+        FILTER(?sugType NOT IN (caapt-v:consult, caapt-v:content_warning, caapt-v:stet))
+    }
+}
