@@ -103,7 +103,10 @@ $(function(){
 </div>     
 
 <div id="abstract"><h2>Abstract</h2><span class="markdown">
-The CAAPT Ontology represents the structure and intellectual contents of terminology guideline documents along with the related work practices of reviewing and potentially editing records as a result of the identification of "problematic terminology" in cultural heritage institutions, with a particular focus on the museum context. It is named for the research project in which it was developed: the AHRC-funded studentship <a href="https://gtr.ukri.org/projects?ref=studentship-2784579">Computational Approaches for Addressing Problematic Terminology in V&A Museum catalogues</a>. CAAPT-O models terms, definitions, suggestions, and actions, drawing on existing ontologies such as <a href="https://www.cidoc-crm.org/">CIDOC CRM</a>, <a href="https://www.w3.org/2019/09/lexicog/">OntoLex</a>, and <a href="https://cultural-ai.github.io/wordsmatter/">CULCO</a> to represent the key concepts involved in critical cataloguing as defined by domain experts.</span>
+The CAAPT Ontologies represent the structure and intellectual contents of terminology guideline documents along with the related work practices of reviewing and potentially editing records as a result of the identification of "problematic terminology" in cultural heritage institutions, with a particular focus on the museum context. 
+It is named for the research project in which it was developed: the AHRC-funded studentship Computational Approaches for Addressing Problematic Terminology in V&A Museum catalogues. 
+The three ontologies for this project - CAAPT-O, CAAPT-UC, and CAAPT-DM - model terms, definitions, suggestions, and actions, drawing on existing ontologies such as CIDOC CRM, OntoLex, CULCO, and the Web Annotation Data Model to represent the key concepts involved in critical cataloguing as defined by domain experts. 
+The vocabulary - CAAPT-V - includes vocabulary concepts for classifying terms, texts, suggestions, senses, and catalogue record field types.</span>
 </div>
 <div id="toc"></div> 
 
@@ -112,8 +115,15 @@ The CAAPT Ontology represents the structure and intellectual contents of termino
 
     <div id="introduction"><h2 id="intro" class="list">Introduction</span></h2>
 
-<p>The CAAPT Ontology models the domain of critical cataloguing in museums, focusing on cataloguing revision work. Background information and early work on this project can be found in <a href="https://aclanthology.org/2024.ldl-1.4/">Canning (2024). Defining an Ontology for Museum Critical Cataloguing Terminology Guidelines, Proceedings of the 9th Workshop on Linked Data in Linguistics @ LREC-COLING 2024</a>. The schema is discussed as three separate but interrelated sections: terminology, guidelines, and workflow. The terminology section details the structure and contents of terminology guideline documents which list terms, define various historical and contemporary senses and details, and have associated metadata for the documents themselves. The guidelines section details suggestions made regarding the terms listed in the guidelines document and the relationships between suggestions, terms, and types of fields in records in which a term may be enoucntered. The workflow section details the information necessary to document the identification of potentially problematic terminology in museum catalogue records and the work actions that may occur as a result.</p>
-<p>The CAAPT Ontology was developed primarily to represent the structure and contents of the V&A Museum Terminology Guidelines document, and the reparative cataloguing work actions taking place within that institution. The ontology has been validated through the analysis and incorporation of two other source documents: the glossary section of the publication <a href="https://www.tropenmuseum.nl/en/about-tropenmuseum/words-matter-publication">"Words Matter"</a>--which also served as the source document for the CULCO ontology--and the Cultural Heritage Terminology Networks's <a href="https://culturalheritageterminology.co.uk/glossary-2/">"Inclusive Terminology Glossary"</a>. Forty-five competency questions, and twelve additional sub-questions, were also developed in collaboration with V&A Museum staff, and were also used to evaluate the ontology and the knowledge graph that has been produced for the CAAPT project using the ontology structure defined here. 
+<p>The CAAPT ontologies model the domain of critical cataloguing in museums, focusing on cataloguing revision work. 
+	Background information and early work on this project can be found in <a href="https://aclanthology.org/2024.ldl-1.4/">Canning (2024). Defining an Ontology for Museum Critical Cataloguing Terminology Guidelines, Proceedings of the 9th Workshop on Linked Data in Linguistics @ LREC-COLING 2024</a>. 
+	The ontological framework is made up of three seperate but interrelated models: </p>
+<ul>
+<li>1. CAAPT-O: the ontology for the representation of museum terminology guidance documents, including terms, definitions, and suggestions for use.</li>
+<li>2. CAAPT-UC: the ontology for the representation of details of the contextual use of terms as described in museum terminology guidance documents.</li>
+<li>3. CAAPT-DM: the ontology for the representation of museum-based critical cataloguing decision-making.</li>
+<li>4. CAAPT-V: a set of vocabularies for the implementation of a knowledge graph structured according to the CAAPT ontologies.</li>
+</ul>
 <p>This work is being carried out as a part of the AHRC-funded studentship <a href="https://gtr.ukri.org/projects?ref=studentship-2784579">Computational Approaches for Addressing Problematic Terminology in V&A Museum catalogues</a>.</p>
   
 
