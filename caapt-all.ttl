@@ -800,11 +800,11 @@ crm:P190_has_symbolic_content a owl:DatatypeProperty ;
 #################################
 
 dcterms:contributor a owl:ObjectProperty ;
-	dcam:domainIncludes crm:E33_Linguistic_Object ; 
+	dcam:domainIncludes crm:E33_Linguistic_Object, caapt:Suggestion ; 
 	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
 
 dcterms:created
-	dcam:domainIncludes crm:E33_Linguistic_Object ; 
+	dcam:domainIncludes crm:E33_Linguistic_Object, caapt:Suggestion ; 
 	dcam:rangeIncludes xsd:date .
 
 dcterms:creator a owl:ObjectProperty ;
@@ -815,5 +815,5 @@ dcterms:mediator
 	dcam:rangeIncludes crm:E21_Person, crm:E74_Group .
 
 dcterms:modified
-	dcam:domainIncludes crm:E33_Linguistic_Object ; 
+	dcam:domainIncludes crm:E33_Linguistic_Object, caapt:Suggestion ; 
 	dcam:rangeIncludes xsd:date .
