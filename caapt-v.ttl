@@ -161,6 +161,36 @@ caapt-v:xenophobia a crm:E55_Type,
 caapt-v:suggestion_actions a skos:ConceptScheme ;
     rdfs:label "types of suggestion actions"@en .
 
+caapt-v:discuss a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require further discussion, consultation, or research" ; 
+    skos:narrower caapt-v:consult, caapt-v:self_identify ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:edit a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require rewording (e.g. replacing the term with something else)" ;
+    skos:narrower caapt-v:format, caapt-v:quotes, caapt-v:rephrase, caapt-v:remove, caapt-v:reword, caapt-v:specific ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:explain a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require contextualising or explanatory text (e.g. adding a note somewhere in the record to explain the use of the term in this record)" ;
+    skos:narrower caapt-v:add_context_text, caapt-v:disclaimer, caapt-v:format, caapt-v:quotes ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:notify a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require adding a warning about the record" ;
+    skos:narrower caapt-v:content_warning, caapt-v:disclaimer ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:review a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require review"; 
+    skos:narrower caapt-v:discuss, caapt-v:edit, caapt-v:explain, caapt-v:notify ;
+    skos:inScheme caapt-v:suggestion_actions .
+
 caapt-v:add_context_text a crm:E55_Type,
         skos:Concept ;
     rdfs:label "add contextualising text"@en ;
