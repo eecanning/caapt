@@ -1,0 +1,263 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix caapt-v: <https://w3id.org/caapt/vocab#> .
+# base: <https://w3id.org/caapt/vocab#> .
+
+
+#################################################################
+#    CAAPT Vocabularies
+#################################################################
+
+<https://w3id.org/caapt/vocab> a void:Dataset ;
+	rdfs:label "CAAPT Vocabularies"@en ;
+	vann:preferredNamespacePrefix "caapt-v" ;
+	vann:preferredNamespaceUri <https://w3id.org/caapt/vocab#> ;
+	dcterms:created "2024-10-22"^^xsd:date ;
+	dcterms:modified "2025-04-08"^^xsd:date ;
+	dcterms:issued "2025-04-08"^^xsd:date ;
+	dcterms:creator <https://orcid.org/0000-0003-3383-272X> ;
+	dcterms:description "Vocabularies for the implementation of a knowledge graph structured according to the CAAPT ontologies." ;
+	rdfs:seeAlso <https://w3id.org/caapt/ontology>, <https://w3id.org/caapt/use-contexts>, <https://w3id.org/caapt/decision-making> ;
+	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-uc.ttl> ;
+	owl:versionInfo "1.0.0" .
+
+<https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
+
+
+#################################################################
+#    Term Types
+#################################################################
+
+caapt-v:term_types a skos:ConceptScheme ;
+    rdfs:label "types of terms"@en .
+
+caapt-v:preferred_term a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "preferred term, often suggested as a preferred alternative to a search term"@en ;
+    skos:inScheme caapt-v:term_types .
+
+caapt-v:search_term a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "term to be searched for"@en ;
+    skos:inScheme caapt-v:term_types .
+
+
+#################################################################
+#    Text Types
+#################################################################
+
+caapt-v:text_types a skos:ConceptScheme ;
+    rdfs:label "types of texts"@en .
+
+caapt-v:description a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "description relating to the meanings and uses of the term, including senses/contextualised uses"@en ;
+    skos:inScheme caapt-v:text_types .
+
+caapt-v:etymological a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "description relating to the origin and historical development of the term"@en ;
+    skos:inScheme caapt-v:text_types .
+
+caapt-v:sensitivity a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "description relating to the sensitivities and concerns regarding use of the term, particularly as it pertains to the contemporary context"@en ;
+    skos:inScheme caapt-v:text_types .
+
+
+#################################################################
+#    Use Intentions
+#################################################################
+
+caapt-v:intentions a skos:ConceptScheme ;
+    rdfs:label "types of intentions"@en .
+
+caapt-v:ableism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonstrate or further ableist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:antisemitism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonstrate or further anti-Jewish attitudes"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:classism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonstrate or further classist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:colonialism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonstrate or further colonial beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:derogatory a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used in a derogatory manner or with derogatory intent"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:empowerment a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used as a term of empowerment"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:homophobia a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonsrate or further dislike of or prejudice against people with non-heterosexual sexualities"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:legal a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used for legal definition"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:medical a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used for medical definition"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:misogyny a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonstrate or further dislike of or prejudice against women"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:political a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used for political action"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:racism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonstrate or further racist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:reclaim a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Harmful term reclaimed by community"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:respectful a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used in a respectful manner or with respectful intent"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:xenophobia a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonsrate or further dislike of or prejudice against people from other countries"@en ;
+    skos:inScheme caapt-v:intentions .
+
+
+#################################################################
+#    Suggestion Types
+#################################################################
+
+caapt-v:suggestion_actions a skos:ConceptScheme ;
+    rdfs:label "types of suggestion actions"@en .
+
+caapt-v:discuss a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require further discussion, consultation, or research" ; 
+    skos:narrower caapt-v:consult, caapt-v:self_identify ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:edit a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require rewording (e.g. replacing the term with something else)" ;
+    skos:narrower caapt-v:format, caapt-v:quotes, caapt-v:rephrase, caapt-v:remove, caapt-v:reword, caapt-v:specific ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:explain a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require contextualising or explanatory text (e.g. adding a note somewhere in the record to explain the use of the term in this record)" ;
+    skos:narrower caapt-v:add_context_text, caapt-v:disclaimer, caapt-v:format, caapt-v:quotes ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:notify a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require adding a warning about the record" ;
+    skos:narrower caapt-v:content_warning, caapt-v:disclaimer ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:review a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "May require review"; 
+    skos:narrower caapt-v:discuss, caapt-v:edit, caapt-v:explain, caapt-v:notify ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:add_context_text a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add contextualising text"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:consult a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "consult a consultation group"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:content_warning a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add content warning"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:disclaimer a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add disclaimer text according to instructions"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:format a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "ensure word spelled and/or formatted according to instructions"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:quotes a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "add quotation marks"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:rephrase a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Change how the line in question is written"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:remove a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "remove term"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:reword a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "replace with suggested term"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:self_identify a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "check how the person/people in question self-identify and use that term"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:specific a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "be more specific"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+caapt-v:stet a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "do not change"@en ;
+    skos:inScheme caapt-v:suggestion_actions .
+
+
+#################################################################
+#    SKOS Collections
+#################################################################
+
+caapt-v:contemporary_context a skos:Collection ;
+    rdfs:label "contemporary context that can be changed without altering the historical record"@en .
+
+caapt-v:historical_context a skos:Collection ;
+    rdfs:label "historical context that cannot be changed without altering the historical record"@en .
