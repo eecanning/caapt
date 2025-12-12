@@ -3,6 +3,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix void: <http://rdfs.org/ns/void#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
@@ -25,7 +26,7 @@
 	dcterms:description "Vocabularies for the implementation of a knowledge graph structured according to the CAAPT ontologies." ;
 	rdfs:seeAlso <https://w3id.org/caapt/ontology>, <https://w3id.org/caapt/use-contexts>, <https://w3id.org/caapt/decision-making> ;
 	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-uc.ttl> ;
-	owl:versionInfo "1.0.0" .
+	owl:versionInfo "1.1.0" .
 
 <https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
 
@@ -81,6 +82,11 @@ caapt-v:intentions a skos:ConceptScheme ;
 caapt-v:ableism a crm:E55_Type,
         skos:Concept ;
     rdfs:label "used to demonstrate or further ableist beliefs or aims"@en ;
+    skos:inScheme caapt-v:intentions .
+
+caapt-v:ageism a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used to demonstrate or further ageist beliefs or aims"@en ;
     skos:inScheme caapt-v:intentions .
 
 caapt-v:antisemitism a crm:E55_Type,
@@ -148,6 +154,11 @@ caapt-v:respectful a crm:E55_Type,
     rdfs:label "used in a respectful manner or with respectful intent"@en ;
     skos:inScheme caapt-v:intentions .
 
+caapt-v:scientific a crm:E55_Type,
+        skos:Concept ;
+    rdfs:label "Used for scientific purposes"@en ;
+    skos:inScheme caapt-v:intentions .
+    
 caapt-v:xenophobia a crm:E55_Type,
         skos:Concept ;
     rdfs:label "used to demonsrate or further xenophobic beliefs or aims"@en ;
