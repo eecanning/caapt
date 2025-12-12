@@ -13,11 +13,10 @@ PREFIX caapt-v: <https://w3id.org/caapt/vocabulary#>
 
 
 # CQ 1.   What institutions have written guidelines?
-SELECT DISTINCT ?creatorName
+SELECT DISTINCT ?creator
 WHERE {
     ?guide a caapt:TerminologyGuide ; 
         dcterms:creator ?creator .
-    ?creator rdfs:label ?creatorName .
 }
 
 
@@ -33,16 +32,18 @@ LIMIT 1
 
 
 # CQ 3.   When was the terminology guideline entry for this term last edited?
-SELECT ?lastDate
+SELECT (MAX(?date) AS ?lastDate)
 WHERE {
     ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
-        crm:P129i_is_subject_of ?description . 
-    ?description a crm:E33_Linguistic_Object .
-
-    OPTIONAL {?description dcterms:created ?createdDate}
-    OPTIONAL {?description dcterms:modified ?modifiedDate}
-  
-    BIND(COALESCE(?createdDate, ?modifiedDate) AS ?lastDate)
+        crm:P129i_is_subject_of ?description ;
+        culco:hasSuggestion ?suggestion .
+    {
+        ?description (dcterms:created|dcterms:modified) ?date .
+    }
+    UNION
+    {
+        ?suggestion (dcterms:created|dcterms:modified) ?date .
+    }
 }
 ORDER BY DESC(?lastDate)
 LIMIT 1
@@ -61,8 +62,7 @@ WHERE {
 ASK {
     ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
            crm:P71i_is_listed_in ?guide . 
-    ?guide a caapt:TerminologyGuide ; 
-           rdfs:label "EXAMPLE INSTITUTION NAME"@en .
+    ?guide dcterms:creator <https://example.org/EXAMPLE_INSTITUTION> .
 }
 
 
@@ -93,7 +93,7 @@ UNION
     }
 UNION
     {
-        SELECT (COUNT(DISTINCT ?description) as ?NumberOfDescriptions)
+        SELECT (COUNT(DISTINCT ?suggestion) as ?NumberOfSuggestions)
         WHERE {
             ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
                 culco:hasSuggestion ?suggestion .
@@ -103,22 +103,25 @@ UNION
 
 
 # CQ 7.   What explanations of different meanings for this term over place and time are available for this term?
-SELECT DISTINCT ?termUse ?termUseValue
+SELECT DISTINCT ?termUse ?termUseValue ?when ?where
 WHERE {
     <https://example.org/EXAMPLE_TERM> ontolex:sense ?termUse .
     ?termUse rdf:value ?termUseValue .
+
+    OPTIONAL { ?termUse caapt-uc:diachronic_mark ?when . }
+    OPTIONAL { ?termUse caapt-uc:diactopic_mark ?where . }
 }
 
 
 # CQ 8.   What information about people, places, and times is available for this term?
-SELECT ?when ?where ?why ?who
+SELECT ?who ?when ?why ?where
 WHERE {
     <https://example.org/EXAMPLE_TERM> ontolex:sense ?termUse .
 
-    OPTIONAL {?termUse caapt-uc:diachronic_mark ?when }
-    OPTIONAL {?termUse caapt-uc:diatopic_mark ?where }
-    OPTIONAL {?termUse caapt-uc:diaevaluative_mark ?why }
-    OPTIONAL {?termUse caapt-uc:intended_target_mark ?who }
+    OPTIONAL { ?termUse ontolex:reference ?who . }
+    OPTIONAL { ?termUse caapt-uc:diachronic_mark ?when . }
+    OPTIONAL { ?termUse caapt-uc:diaevaluative_mark ?why . }
+    OPTIONAL { ?termUse caapt-uc:diatopic_mark ?where . }
 }
 
 
@@ -162,7 +165,7 @@ WHERE {
 # CQ 13.  What is the meaning of the classification used to identify potentially problematic terminology?
 SELECT DISTINCT ?classTypeLabel
 WHERE {
-    caapt-v:sensitivity rdfs:label ?classTypeLabel .
+    caapt-v:search_term rdfs:label ?classTypeLabel .
 }
 
 
@@ -285,30 +288,21 @@ WHERE {
 
 
 # CQ 20.  What are the suggestion details for the different possible uses of this term?
-SELECT DISTINCT ?termUse ?sugValue
+SELECT DISTINCT ?termUse ?termUseValue ?sugValue
 WHERE {
     <https://example.org/EXAMPLE_TERM> ontolex:sense ?termUse .
+    ?termUse rdf:value ?termUseValue .
     ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
         culco:hasSuggestion ?sug .
-    ?sug rdf:value ?sugValue .
-
-    OPTIONAL {?sug crm:P129_is_about ?contents }
-    OPTIONAL {?termUse caapt-uc:diachronic_mark ?when}
-    OPTIONAL {?termUse caapt-uc:diatopic_mark ?where}
-    OPTIONAL {?termUse caapt-uc:diaevaluative_mark ?why}
-    OPTIONAL {?termUse caapt-uc:intended_target_mark ?who}
-
-    FILTER NOT EXISTS {
-        ?sug crm:P129_is_about ?c .
-        FILTER(?c NOT IN (?when, ?where, ?why, ?who))
-    }
-  
-    VALUES ?prop { caapt-uc:diachronic_mark caapt-uc:diatopic_mark caapt-uc:diaevaluative_mark caapt-uc:intended_target_mark }
- 
-    FILTER NOT EXISTS {
-        ?termUse ?prop ?v .
-        ?sug crm:P129_is_about ?c .
-        FILTER (?c IN (?when, ?where, ?why, ?who) && ?v != ?c)
+    ?sug rdf:value ?sugValue ;
+        crm:P129_is_about ?contents .
+    
+    FILTER EXISTS {
+        ?termUse ontolex:reference ?useCondition |
+            caapt_uc:diachronic_mark |
+            caapt_uc:diaevaluative_mark |
+            caapt_uc:diatopic_mark .
+        FILTER(?contents = ?useCondition)
     }
 }
 
@@ -350,8 +344,9 @@ WHERE {
     ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
         culco:hasSuggestion ?sug .
     ?sug rdf:value ?sugValue ;
-        crm:P2_has_type <https://w3id.org/caapt/vocab#add_context_text> .
-    OPTIONAL {?sug crm:P69_has_association_with ?contextText . ?contextText rdf:value ?contextTextValue .}
+        crm:P2_has_type caapt-v:add_context_text .
+    OPTIONAL { ?sug crm:P69_has_association_with ?contextText . 
+        ?contextText rdf:value ?contextTextValue . }
 }
 
 
@@ -372,7 +367,7 @@ WHERE {
         culco:hasSuggestion ?sug .
     ?sug rdf:value ?sugValue ;
         dcterms:mediator ?consultant ;
-        crm:P2_has_type <https://w3id.org/caapt/vocab#consult> .
+        crm:P2_has_type caapt-v:consult .
     ?consultant rdfs:label ?consultantName .
 }
 
@@ -401,36 +396,30 @@ WHERE {
 # CQ 29.  Where suggestions have been made in multiple guidelines for this term, are they of the same type(s)?
 SELECT DISTINCT ?guide ?sugType
 WHERE {
-    {
-        SELECT ?term (COUNT(DISTINCT ?guide) AS ?guideCount)
-        WHERE {
-        ?entry ontolex:isEvokedBy ?term ;
-            culco:hasSuggestion ?sug .
-        ?sug crm:P70i_is_documented_in ?guide ;
-            crm:P2_has_type ?sugType .
-        FILTER(?term IN (<https://example.org/EXAMPLE_INSTITUTION>))
-        }
-    GROUP BY ?term
-    HAVING (?guideCount >1)
-    }
-    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_INSTITUTION> ;
-        culco:hasSuggestion ?sug .
-    ?sug crm:P2_has_type ?sugType ;
-        crm:P70i_is_documented_in ?guide .  
-} 
-GROUP BY ?sugType ?guide
+  ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+         culco:hasSuggestion ?sug .
+  ?sug crm:P70i_is_documented_in ?guide ;
+       crm:P2_has_type ?sugType .
+
+  FILTER EXISTS {
+    ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
+           culco:hasSuggestion ?otherSug .
+    ?otherSug crm:P70i_is_documented_in ?otherGuide .
+    FILTER (?otherGuide != ?guide)
+  }
+}
 
 
 # CQ 30.  When was a suggestion entry for this term last edited?
-SELECT ?lastDate
+SELECT (MAX(?date) AS ?lastDate)
 WHERE {
     ?entry ontolex:isEvokedBy <https://example.org/EXAMPLE_TERM> ;
         culco:hasSuggestion ?sug .
 
-    OPTIONAL {?sug dcterms:created ?createdDate}
-    OPTIONAL {?sug dcterms:modified ?modifiedDate}
+    OPTIONAL { ?sug dcterms:created ?createdDate . }
+    OPTIONAL { ?sug dcterms:modified ?modifiedDate . }
   
-    BIND(COALESCE(?createdDate, ?modifiedDate) AS ?lastDate)
+    BIND(COALESCE(?createdDate, ?modifiedDate) AS ?date)
 }
 ORDER BY DESC(?lastDate)
 LIMIT 1
@@ -439,7 +428,7 @@ LIMIT 1
 # CQ 31.  How many times has this term be found in the catalogue records?
 SELECT (COUNT(DISTINCT ?encounter) as ?NumberOfEncounters)
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
     ?form frac:attestation ?encounter .
 }
 
@@ -447,8 +436,8 @@ WHERE {
 # CQ 32.  In which records has this term be found?
 SELECT DISTINCT ?enRecordIDValue
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
-    ?form ?frac:attestation ?encounter . 
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
+    ?form frac:attestation ?encounter . 
     ?encounter crm:P106i_forms_part_of ?enText .
     ?enText crm:P165i_is_incorporated_by ?enField . 
     ?enField crm:P148i_is_component_of ?enRecord . 
@@ -460,44 +449,41 @@ WHERE {
 # CQ 33.  What records have had this term flagged and what actions were taken?
 SELECT DISTINCT ?enRecordIDValue ?actionValue
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
-    ?form ?frac:attestation ?encounter . 
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
+    ?form frac:attestation ?encounter . 
     ?encounter crm:P106i_forms_part_of ?enText .
     ?enText crm:P165i_is_incorporated_by ?enField . 
     ?enField crm:P148i_is_component_of ?enRecord . 
     ?enRecord crm:P1_is_identified_by ?enRecordID .
     ?enRecordID rdf:value ?enRecordIDValue .
-    ?action crm:P15_was_influenced_by ?encounter ;
-        rdf:value ?actionValue . 
+    OPTIONAL { ?action crm:P15_was_influenced_by ?encounter ;
+        rdf:value ?actionValue . } 
 }
 
 
 # CQ 34.  What records with this term have been changed, and what are the details around that?
 SELECT DISTINCT ?enRecordID ?actionValue
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
-    ?form ?frac:attestation ?encounter . 
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
+    ?form frac:attestation ?encounter . 
     ?encounter crm:P106i_forms_part_of ?enText .
     ?enText crm:P165i_is_incorporated_by ?enField . 
     ?enField crm:P148i_is_component_of ?enRecord . 
     ?enRecord crm:P1_is_identified_by ?enRecordID .
+    ?action crm:P15_was_influenced_by ?encounter ;
+        rdf:value ?actionValue ;
+        crm:P33_used_specific_technique ?sug .
+    ?sug crm:P2_has_type ?sugType .
 
-    {
-        ?action crm:P15_was_influenced_by ?encounter ;
-            rdf:value ?actionValue ;
-            crm:P33_used_specific_technique ?sug .
-        ?sug crm:P2_has_type ?sugType .
-
-        FILTER(?sugType NOT IN (caapt-v:consult, caapt-v:content_warning, caapt-v:stet))
-    }
+    FILTER(?sugType NOT IN (caapt-v:consult, caapt-v:content_warning, caapt-v:stet))
 }
 
 
 # CQ 35.  Which records contain this term and have no associated actions?
 SELECT DISTINCT ?enRecordIDValue
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
-    ?form ?frac:attestation ?encounter . 
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
+    ?form frac:attestation ?encounter . 
     ?encounter crm:P106i_forms_part_of ?enText .
     ?enText crm:P165i_is_incorporated_by ?enField . 
     ?enField crm:P148i_is_component_of ?enRecord . 
@@ -521,15 +507,16 @@ ASK {
 
 
 # CQ 37.  Who has reviewed records that contained this term?
-SELECT DISTINCT ?personLabel
+SELECT DISTINCT ?personLabel 
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
-    ?form ?frac:attestation ?encounter . 
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
+    ?form frac:attestation ?encounter .
+
+    OPTIONAL { ?enActivity (crm:P15_was_influenced_by | crm:P17_was_motivated_by) ?encounter ;
+        crm:P14_carried_out_by ?person .
+    ?person rdfs:label ?personLabel . }
     
-    OPTIONAL {?enActivity crm:P15_was_influenced_by ?encounter ; crm:P14_carried_out_by ?p1 . ?p1 rdfs:label ?p1Label}
-    OPTIONAL {?enActivity crm:P15_was_influenced_by ?encounter ; crm:P14_carried_out_by ?p2 . ?p2 rdfs:label ?p2Label}
-    
-    BIND(COALESCE(?p1Label, ?p2Label) AS ?personLabel)
+    FILTER(BOUND(?personLabel)) 
 }
 
 
@@ -554,9 +541,7 @@ WHERE {
     ?encounter crm:P106i_forms_part_of ?enText .
     ?action crm:P15_was_influenced_by ?encounter ;
         crm:P33_used_specific_technique ?sug .
-    ?sug crm:P2_has_type ?sugType . 
-   
-    FILTER(?sugType IN (<https://example.org/EXAMPLE_SUGGESTION_TYPE>))
+    ?sug crm:P2_has_type <https://example.org/EXAMPLE_SUGGESTION_TYPE> . 
 }
 
 
@@ -571,20 +556,20 @@ WHERE {
     ?action crm:P15_was_influenced_by ?encounter ;
         crm:P33_used_specific_technique ?sug .
     ?sug crm:P2_has_type ?sugType. 
-    ?form ?frac:attestation ?encounter . 
-    ?term ontolex:lexicalForm ?form ;
+    ?form frac:attestation ?encounter . 
+    ?term ontolex:LexicalForm ?form ;
         crm:P41i_was_classified_by ?classification .
     ?classification crm:P42_assigned <https://example.org/EXAMPLE_CLASSIFICATION> .
 
-    FILTER(?sugType IN (caapt-v:remove, caapt-v:reword))
+    FILTER(?sugType NOT IN (caapt-v:consult, caapt-v:content_warning, caapt-v:stet))
 }
 
 
 # CQ 41.  Which meaning of a term is most frequently used when the term is found in a record?
 SELECT ?termUseValue
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
-    ?form ?frac:attestation ?encounter . 
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
+    ?form frac:attestation ?encounter . 
     ?assign crm:P140_assigned_attribute_to ?encounter ; 
         crm:P141_assigned ?termUse .
     ?termUse a caapt-uc:UseContext ;
@@ -610,7 +595,7 @@ WHERE {
         crm:P4_has_time-span ?date . 
     ?date crm:P82_at_some_time_within ?dateStamp . 
 
-    FILTER(CONTAINS(LCASE(STR(?value)), "terminology discussion forum"))
+    FILTER(CONTAINS(LCASE(STR(?discussionLabel)), "discussion meeting"))
 }
 ORDER BY DESC(?dateStamp)
 
@@ -618,15 +603,12 @@ ORDER BY DESC(?dateStamp)
 CQ 43.  What was the text of the record that was then changed as part of remediating this term?
 SELECT DISTINCT ?enText
 WHERE {
-    <https://example.org/EXAMPLE_TERM> ontolex:lexicalForm ?form .
-    ?form ?frac:attestation ?encounter . 
+    <https://example.org/EXAMPLE_TERM> ontolex:LexicalForm ?form .
+    ?form frac:attestation ?encounter . 
     ?encounter crm:P106i_forms_part_of ?enText .
+    ?action crm:P15_was_influenced_by ?encounter .
+    ?action crm:P33_used_specific_technique ?sug .
+    ?sug crm:P2_has_type ?sugType .
 
-    {
-        ?action crm:P15_was_influenced_by ?encounter .
-        ?action crm:P33_used_specific_technique ?sug .
-        ?sug crm:P2_has_type ?sugType .
-
-        FILTER(?sugType NOT IN (caapt-v:consult, caapt-v:content_warning, caapt-v:stet))
-    }
+    FILTER(?sugType NOT IN (caapt-v:consult, caapt-v:content_warning, caapt-v:stet))
 }
