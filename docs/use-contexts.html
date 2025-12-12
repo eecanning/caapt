@@ -65,9 +65,9 @@ $(function(){
 <h2>Release 2025-04-08</h2>
 
 <dl>
-<dt>This version:</dt><dd><a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-uc.ttl">v.1.0.0</a></dd>
-<!--<dt>Previous version:</dt><dd><a href="">v1.0.0</a></dd>
-<dt>Revision:</dt><dd>1.0.0</dd>-->
+<dt>This version:</dt><dd><a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-uc.ttl">v.2.0.0</a></dd>
+<dt>Previous version:</dt><dd><a href="https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/previous/modules/caapt-uc/v.1.0.0/caapt-uc.ttl">v1.0.0</a></dd><dt>Previous version:</dt><dd><a href="">v1.0.0</a></dd>
+<!--<dt>Revision:</dt><dd>1.0.0</dd>-->
 <dt>Authors:</dt>
    <dd><a href="">Erin Canning</a><a href="mailto:erin.canning@wolfson.ox.ac.uk">&#9993;</a></dd>
 <dt>Contributors:</dt>
@@ -163,9 +163,6 @@ This ontology declares the following 1 class and 6 properties.</span>
       <a href="#diatopic_mark" title="https://w3id.org/caapt/use-contexts#diatopic_mark">diatopic_mark</a>
    </li>
    <li>
-      <a href="#intended_target_mark" title="https://w3id.org/caapt/use-contexts#intended_target_mark">intended_target_mark</a>
-   </li>
-   <li>
       <a href="#describes_replacing" title="https://w3id.org/caapt/use-contexts#describes_replacing">describes_replacing</a>
    </li>
    <li>
@@ -206,7 +203,6 @@ This section provides details for each class and property defined by CAAPT-UC.
             <a href="#diachronic_mark" title="https://w3id.org/caapt/use-contexts#diachronic_mark">diachronic_mark</a><sup class="type-op" title="object property"></sup>,
             <a href="#diaevaluative_mark" title="https://w3id.org/caapt/use-contexts#diaevaluative_mark">diaevaluative_mark</a><sup class="type-op" title="object property"></sup>,
             <a href="#diatopic_mark" title="https://w3id.org/caapt/use-contexts#diatopic_mark">diatopic_mark</a><sup class="type-op" title="object property"></sup>,
-            <a href="#intended_target_mark" title="https://w3id.org/caapt/use-contexts#intended_target_mark">intended_target_mark</a><sup class="type-op" title="object property"></sup>,
             <a href="#describes_replacing" title="https://w3id.org/caapt/use-contexts#describes_replacing">describes_replacing</a><sup class="type-op" title="object property"></sup>,
             <a href="#describes_replaced_by" title="https://w3id.org/caapt/use-contexts#describes_replaced_by">describes_replaced_by</a><sup class="type-op" title="object property"></sup>
          </dd>
@@ -238,9 +234,6 @@ This section provides details for each class and property defined by CAAPT-UC.
       </li>
       <li>
          <a href="#diatopic_mark" title="https://w3id.org/caapt/use-contexts#diatopic_mark">diatopic_mark</a>
-      </li>
-      <li>
-         <a href="#intended_target_mark" title="https://w3id.org/caapt/use-contexts#intended_target_mark">intended_target_mark</a>
       </li>
       <li>
          <a href="#describes_replacing" title="https://w3id.org/caapt/use-contexts#describes_replacing">describes_replacing</a>
@@ -331,33 +324,6 @@ This section provides details for each class and property defined by CAAPT-UC.
       </div>
    </div>
 
-   <div class="entity" id="intended_target_mark">
-      <h3>intended_target_mark<sup class="type-op" title="object property"></sup></span></h3>
-      <p>
-         <strong>IRI:</strong> https://w3id.org/caapt/use-contexts#intended_target_mark</p>
-      <div class="comment">
-         <span class="markdown">Group of persons intended to be described by a term in a use context.</span>
-      </div>
-      <div>
-         <dl class="description">
-            <dt>is subproperty of</dt>
-         <dd>
-            <a href="https://www.w3.org/ns/lemon/ontolex#usage" target="_blank" title="https://www.w3.org/ns/lemon/ontolex#usage">ontolex:usage</a><sup class="type-op" title="object property"></sup>
-         </dd>
-         </dl>
-         <dl class="description">
-            <dt>has domain</dt>
-            <dd>
-               <a href="#UseContext" title="https://w3id.org/caapt/use-contexts#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
-            </dd>
-            <dt>has range</dt>
-            <dd>
-               <a href="https://www.cidoc-crm.org/cidoc-crm/E74_Group" target="_blank" title="https://www.cidoc-crm.org/cidoc-crm/E74_Group">crm:E74_Group</a><sup class="type-c" title="class"></sup>
-            </dd>
-         </dl>
-      </div>
-   </div>
-
    <div class="entity" id="describes_replacing">
       <h3>describes_replacing<sup class="type-op" title="object property"></sup></span></h3>
       <p>
@@ -374,6 +340,9 @@ This section provides details for each class and property defined by CAAPT-UC.
             <dt>has range</dt>
             <dd>
                <a href="https://w3id.org/caapt/ontology#TermRoot" title="https://w3id.org/caapt/ontology#TermRoot">TermRoot</a><sup class="type-c" title="class"></sup>
+            </dd>
+            <dd>
+               <a href="#UseContext" title="https://w3id.org/caapt/use-contexts#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
             </dd>
          </dl>
       </div>
@@ -395,6 +364,9 @@ This section provides details for each class and property defined by CAAPT-UC.
             <dt>has range</dt>
             <dd>
                <a href="https://w3id.org/caapt/ontology#TermRoot" title="https://w3id.org/caapt/ontology#TermRoot">TermRoot</a><sup class="type-c" title="class"></sup>
+            </dd>
+            <dd>
+               <a href="#UseContext" title="https://w3id.org/caapt/use-contexts#UseContext">UseContext</a><sup class="type-c" title="class"></sup>
             </dd>
          </dl>
       </div>

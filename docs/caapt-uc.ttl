@@ -30,7 +30,7 @@
 	dcterms:description "An OWL ontology for the representation of details of the contextual use of terms as described in museum terminology guidance documents." ;
 	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco> ;
 	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-uc.ttl> ;
-	owl:versionInfo "1.0.0" .
+	owl:versionInfo "2.0.0" .
 
 <https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
 
@@ -65,23 +65,17 @@ caapt-uc:diaevaluative_mark a owl:ObjectProperty ;
 	rdfs:range crm:E55_Type ;
 	rdfs:subPropertyOf ontolex:usage .
 
-caapt-uc:intended_target_mark a owl:ObjectProperty ;
-	rdfs:label "Group of persons intended to be described by a term in a use context"@en ;
-	rdfs:domain caapt-uc:UseContext ; 
-	rdfs:range crm:E74_Group ;
-	rdfs:subPropertyOf ontolex:usage .
-
-caap-uct:describes_replacing a owl:ObjectProperty ;
-	rdfs:label "Term that this sense describes the replacement of; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
+caapt-uc:describes_replacing a owl:ObjectProperty ;
+	rdfs:label "Term that this sense describes the replacement of; e.g.: 'the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities'";
 	rdfs:domain caapt-uc:UseContext ;
-	rdfs:range ontolex:LexicalEntry ;
-    dcam:rangeIncludes caapt:TermRoot .
+	rdfs:range [ owl:unionOf ontolex:LexicalEntry, ontolex:LexicalSense ] ;
+    dcam:rangeIncludes caapt:TermRoot, caapt-uc:UseContext .
 
 caapt-uc:describes_replaced_by a owl:ObjectProperty ;
-	rdfs:label "Term that this sense describes being replaced by; e.g.: "the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
+	rdfs:label "Term that this sense describes being replaced by; e.g.: 'the use of the term 'disabled' replaced the use of the term 'handicapped' to refer to people living with diasbilities";
 	rdfs:domain caapt-uc:UseContext ;
-	rdfs:range ontolex:LexicalEntry ;
-    dcam:rangeIncludes caapt:TermRoot .
+	rdfs:range [ owl:unionOf ontolex:LexicalEntry, ontolex:LexicalSense ] ;
+    dcam:rangeIncludes caapt:TermRoot, caapt-uc:UseContext .
 
 
 #################################################################
@@ -135,7 +129,7 @@ ontolex:reference a owl:ObjectProperty ;
 	rdfs:domain ontolex:LexicalSense ;
 	rdfs:range rdfs:Resource ;
 	dcam:domainIncludes caapt-uc:UseContext ; 
-	dcam:rangeIncludes crm:E33_Linguistic_Object .
+	dcam:rangeIncludes crm:E74_Group .
 
 ontolex:sense a owl:ObjectProperty ;
 	rdfs:domain ontolex:LexicalEntry ; 
