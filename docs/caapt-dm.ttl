@@ -33,7 +33,7 @@
 	dcterms:description "An OWL ontology for the representation of museum-based critical cataloguing decision-making." ;
 	rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm>, <http://www.w3.org/ns/lemon/ontolex>, <http://www.w3.org/2004/02/skos>, <https://w3id.org/culco>, <http://www.w3.org/ns/oa#> ;
 	owl:versionIRI <https://raw.githubusercontent.com/eecanning/caapt/refs/heads/main/docs/caapt-dm.ttl> ;
-	owl:versionInfo "1.0.0" .
+	owl:versionInfo "1.1.0" .
 
 <https://orcid.org/0000-0003-3383-272X> rdfs:label "E.E. Canning" .
 
@@ -132,11 +132,11 @@ crm:E74_Group a owl:Class ;
 
 # Referenced as CRM Property domains or ranges below 
 
-E1_CRM_Entity a owl:Class .
+crm:E1_CRM_Entity a owl:Class .
 
 crm:E2_Temporal_Entity a owl:Class .
 
-E73_Information_Object a owl:Class .
+crm:E73_Information_Object a owl:Class .
 
 crm:E90_Symbolic_Object a owl:Class .
 
@@ -212,10 +212,16 @@ oa:hasBody a owl:ObjectProperty ;
     rdfs:domain oa:Annotation ;
     dcam:rangeIncludes ontolex:Form .
 
-oa:hasPurpose a owl:ObjectProperty ; 
+oa:motivatedBy a owl:ObjectProperty ; 
     rdfs:domain oa:Annotation ;
     rdfs:range oa:Motivation ;
     dcam:domainIncludes caapt-dm:EncounterInstance .
+
+oa:hasSelector a owl:ObjectProperty ; 
+    rdfs:domain oa:ResourceSelection ; 
+	rdfs:range oa:Selector ;
+    dcam:domainIncludes oa:SpecificResource ;
+    dcam:rangeIncludes oa:FragmentSelector . 
 
 oa:hasSource a owl:ObjectProperty ; 
     rdfs:domain oa:ResourceSelection ; 
@@ -275,9 +281,9 @@ crm:P14_carried_out_by a owl:ObjectProperty ;
 crm:P15_was_influenced_by a owl:ObjectProperty ; 
     rdfs:domain crm:E7_Activity ; 
     rdfs:range crm:E1_CRM_Entity ;
-    dcam:rangeIncludes caapt-dm:EncounterInstance ;
+    dcam:rangeIncludes caapt-dm:EncounterInstance .
 
-crm:P17_was_motivated_by a owl:ObjectPRoperty ; 
+crm:P17_was_motivated_by a owl:ObjectProperty ; 
 	rdfs:domain crm:E7_Activity ; 
 	rdfs:range crm:E1_CRM_Entity ; 
 	dcam:rangeIncludes caapt-dm:EncounterInstance ;
@@ -297,7 +303,7 @@ crm:P21_had_general_purpose a owl:ObjectProperty ;
 crm:P33_used_specific_technique a owl:ObjectProperty ; 
 	rdfs:domain crm:E7_Activity ; 
 	rdfs:range crm:E29_Design_or_Procedure ;
-	dcma:domainIncludes crm:E29_Design_or_Procedure, caapt:Suggestion .
+	dcam:domainIncludes crm:E29_Design_or_Procedure, caapt:Suggestion .
 
 crm:P106i_forms_part_of a owl:ObjectProperty ; 
 	rdfs:domain crm:E90_Symbolic_Object ;
@@ -312,7 +318,7 @@ crm:P129_is_about a owl:ObjectProperty ;
 	dcam:rangeIncludes crm:E70_Thing .
 
 crm:P134i_was_continued_by a owl:ObjectProperty ; 
-	rdfs:domain crm:E7_Activity .
+	rdfs:domain crm:E7_Activity ;
 	rdfs:range crm:E7_Activity .
 
 crm:P140_assigned_attribute_to a owl:ObjectProperty ; 
